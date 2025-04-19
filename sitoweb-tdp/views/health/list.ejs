@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+
+    <main>
+        <h1>Argomenti di Salute e Benessere</h1>
+
+        <a href="/health/new">➕ Aggiungi nuovo argomento</a>
+
+        <% if (topics.length===0) { %>
+            <p>Nessun argomento presente.</p>
+            <% } else { %>
+                <ul>
+                    <% topics.forEach(topic=> { %>
+                        <li>
+                            <h3>
+                                <%= topic.title %>
+                            </h3>
+                            <p>
+                                <%= topic.description %>
+                            </p>
+                            <a href="/health/<%= topic.id %>">🔍 Visualizza</a> |
+                            <a href="/health/<%= topic.id %>/edit">✏️ Modifica</a> |
+                            <form action="/health/<%= topic.id %>/delete" method="POST" style="display:inline;">
+                                <button type="submit">🗑️ Elimina</button>
+                            </form>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+    </main>
+
+    <%- include('../partials/footer') %>

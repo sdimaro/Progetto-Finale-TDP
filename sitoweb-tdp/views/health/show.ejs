@@ -1,0 +1,20 @@
+<%- include('../partials/header') %>
+
+    <main>
+        <h1>
+            <%= topic.title %>
+        </h1>
+
+        <p>
+            <%= topic.description %>
+        </p>
+
+        <a href="/health/<%= topic.id %>/edit">✏️ Modifica</a> |
+        <form action="/health/<%= topic.id %>/delete" method="POST" style="display:inline;">
+            <button type="submit">🗑️ Elimina</button>
+        </form>
+
+        <a href="/health">⬅️ Torna alla lista</a>
+    </main>
+
+    <%- include('../partials/footer') %>

@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+
+    <main>
+        <h1>✏️ Modifica Argomento</h1>
+
+        <form action="/health/<%= topic.id %>" method="POST">
+            <div>
+                <label for="title">Titolo:</label>
+                <input type="text" id="title" name="title" value="<%= topic.title %>" required>
+            </div>
+
+            <div>
+                <label for="description">Descrizione:</label>
+                <textarea id="description" name="description" required><%= topic.description %></textarea>
+            </div>
+
+            <button type="submit">Salva modifiche</button>
+        </form>
+
+        <a href="/health">⬅️ Torna alla lista</a>
+    </main>
+
+    <%- include('../partials/footer') %>

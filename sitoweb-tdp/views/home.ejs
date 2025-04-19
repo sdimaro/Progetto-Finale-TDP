@@ -9,447 +9,297 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        :root {
-            --primary-color: #4a8f29;
-            --secondary-color: #6bbd46;
-            --light-green: #e8f5e9;
-            --dark-green: #2e7d32;
-            --natural-brown: #8d6e63;
-            --sky-blue: #e3f2fd;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-        }
-
-        .navbar {
-            background-color: var(--primary-color) !important;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .hero-section {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
-            background-size: cover;
-            background-position: center;
-            padding: 100px 0;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            border-color: var(--primary-color);
-        }
-
-        .btn-primary:hover {
-            background-color: var(--dark-green);
-            border-color: var(--dark-green);
-        }
-
-        .bg-light-green {
-            background-color: var(--light-green);
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-
-        .testimonial-card {
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .newsletter-section {
-            background-color: var(--sky-blue);
-        }
-
-        footer {
-            background-color: var(--dark-green) !important;
-        }
-
-        .natural-img {
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-
-        .natural-img:hover {
-            transform: scale(1.03);
-        }
-    </style>
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold" href="#">
-                <i class="fas fa-leaf me-2"></i>Salute & Benessere Naturale
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/health">Salute</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/nutrition">Nutrizione</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/fitness">Fitness</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/about">Chi Siamo</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/contact">Contatti</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+    <!-- Navbar (usa lo stesso del tuo layout principale) -->
+    <%- include('partials/navbar') %>
 
-    <!-- Hero Section -->
-    <section class="hero-section text-center text-white">
-        <div class="container py-5">
-            <h1 class="display-4 fw-bold mb-4">Vivi in Armonia con la Natura</h1>
-            <p class="lead mb-4">Scopri il segreto per un benessere duraturo attraverso rimedi naturali, alimentazione
-                consapevole e movimento armonico.</p>
-            <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                <a href="/health" class="btn btn-success btn-lg px-4 gap-3">Inizia il Tuo Percorso</a>
-                <a href="/about" class="btn btn-outline-light btn-lg px-4">Scopri Chi Siamo</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-5 bg-light-green">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">I Nostri Pilastri del Benessere</h2>
-                <p class="lead text-muted">Un approccio olistico per una vita sana ed equilibrata</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-md-4 text-center">
-                    <div class="feature-icon">
-                        <i class="fas fa-apple-alt"></i>
-                    </div>
-                    <h3>Alimentazione Naturale</h3>
-                    <p>Scopri come nutrire il tuo corpo con cibi integrali e ricchi di vitalità, secondo i ritmi della
-                        natura.</p>
-                    <a href="/nutrition" class="btn btn-outline-success">Approfondisci</a>
-                </div>
-
-                <div class="col-md-4 text-center">
-                    <div class="feature-icon">
-                        <i class="fas fa-spa"></i>
-                    </div>
-                    <h3>Mindfulness</h3>
-                    <p>Tecniche di meditazione e respirazione per ridurre lo stress e ritrovare l'equilibrio interiore.
-                    </p>
-                    <a href="/mindfulness" class="btn btn-outline-success">Approfondisci</a>
-                </div>
-
-                <div class="col-md-4 text-center">
-                    <div class="feature-icon">
-                        <i class="fas fa-running"></i>
-                    </div>
-                    <h3>Movimento Consapevole</h3>
-                    <p>Esercizi dolci che rispettano il tuo corpo, migliorando flessibilità, forza e vitalità.</p>
-                    <a href="/fitness" class="btn btn-outline-success">Approfondisci</a>
+        <!-- Hero Section -->
+        <section class="hero-section text-center text-white">
+            <div class="container py-5">
+                <h1 class="display-4 fw-bold mb-4">Vivi in Armonia con la Natura</h1>
+                <p class="lead mb-4">Scopri il segreto per un benessere duraturo attraverso rimedi naturali,
+                    alimentazione
+                    consapevole e movimento armonico.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    <a href="/health" class="btn btn-success btn-lg px-4 gap-3">Inizia il Tuo Percorso</a>
+                    <a href="/about" class="btn btn-outline-light btn-lg px-4">Scopri Chi Siamo</a>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Us Section -->
-    <section class="py-5">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                        alt="Team di esperti in benessere" class="img-fluid natural-img">
+        <!-- Features Section -->
+        <section class="py-5 bg-light-green">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">I Nostri Pilastri del Benessere</h2>
+                    <p class="lead text-muted">Un approccio olistico per una vita sana ed equilibrata</p>
                 </div>
-                <div class="col-lg-6">
-                    <h2 class="fw-bold mb-4">La Nostra Filosofia</h2>
-                    <p class="lead">Crediamo in un approccio integrato al benessere, che unisce saggezza antica e
-                        ricerca moderna.</p>
-                    <p>Fondato nel 2010, il nostro centro riunisce professionisti della salute appassionati di metodi
-                        naturali. Collaboriamo con nutrizionisti, erboristi, insegnanti di yoga e terapisti olistici per
-                        offrirti un percorso completo verso il benessere.</p>
-                    <div class="d-flex align-items-center mb-3">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>Consulenze personalizzate</span>
-                    </div>
-                    <div class="d-flex align-items-center mb-3">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>Programmi basati su evidenze scientifiche</span>
-                    </div>
-                    <div class="d-flex align-items-center mb-4">
-                        <i class="fas fa-check-circle text-success me-2"></i>
-                        <span>Approccio rispettoso della persona</span>
-                    </div>
-                    <a href="/about" class="btn btn-success px-4">La Nostra Storia</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Testimonials -->
-    <section class="py-5 bg-light">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Storie di Trasformazione</h2>
-                <p class="lead text-muted">Ascolta le esperienze di chi ha cambiato la propria vita</p>
-            </div>
-
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 testimonial-card">
-                        <div class="card-body">
-                            <div class="mb-3 text-warning">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <p class="card-text">"Dopo anni di diete yo-yo, ho finalmente trovato un approccio
-                                sostenibile all'alimentazione. Ho perso 15 kg e mi sento piena di energia!"</p>
+                <div class="row g-4">
+                    <div class="col-md-4 text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-apple-alt"></i>
                         </div>
-                        <div class="card-footer bg-transparent">
-                            <div class="d-flex align-items-center">
-                                <img src="https://randomuser.me/api/portraits/women/43.jpg" class="rounded-circle me-3"
-                                    width="50" alt="Maria Rossi">
-                                <div>
-                                    <h6 class="mb-0">Maria Rossi</h6>
-                                    <small class="text-muted">Paziente dal 2022</small>
+                        <h3>Alimentazione Naturale</h3>
+                        <p>Scopri come nutrire il tuo corpo con cibi integrali e ricchi di vitalità, secondo i ritmi
+                            della
+                            natura.</p>
+                        <a href="/nutrition" class="btn btn-outline-success">Approfondisci</a>
+                    </div>
+
+                    <div class="col-md-4 text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-spa"></i>
+                        </div>
+                        <h3>Mindfulness</h3>
+                        <p>Tecniche di meditazione e respirazione per ridurre lo stress e ritrovare l'equilibrio
+                            interiore.
+                        </p>
+                        <a href="/mindfulness" class="btn btn-outline-success">Approfondisci</a>
+                    </div>
+
+                    <div class="col-md-4 text-center">
+                        <div class="feature-icon">
+                            <i class="fas fa-running"></i>
+                        </div>
+                        <h3>Movimento Consapevole</h3>
+                        <p>Esercizi dolci che rispettano il tuo corpo, migliorando flessibilità, forza e vitalità.</p>
+                        <a href="/fitness" class="btn btn-outline-success">Approfondisci</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Us Section -->
+        <section class="py-5">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 mb-4 mb-lg-0">
+                        <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                            alt="Team di esperti in benessere" class="img-fluid natural-img">
+                    </div>
+                    <div class="col-lg-6">
+                        <h2 class="fw-bold mb-4">La Nostra Filosofia</h2>
+                        <p class="lead">Crediamo in un approccio integrato al benessere, che unisce saggezza antica e
+                            ricerca moderna.</p>
+                        <p>Fondato nel 2010, il nostro centro riunisce professionisti della salute appassionati di
+                            metodi
+                            naturali. Collaboriamo con nutrizionisti, erboristi, insegnanti di yoga e terapisti olistici
+                            per
+                            offrirti un percorso completo verso il benessere.</p>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span>Consulenze personalizzate</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span>Programmi basati su evidenze scientifiche</span>
+                        </div>
+                        <div class="d-flex align-items-center mb-4">
+                            <i class="fas fa-check-circle text-success me-2"></i>
+                            <span>Approccio rispettoso della persona</span>
+                        </div>
+                        <a href="/about" class="btn btn-success px-4">La Nostra Storia</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-5 bg-light">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Storie di Trasformazione</h2>
+                    <p class="lead text-muted">Ascolta le esperienze di chi ha cambiato la propria vita</p>
+                </div>
+
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100 testimonial-card">
+                            <div class="card-body">
+                                <div class="mb-3 text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="card-text">"Dopo anni di diete yo-yo, ho finalmente trovato un approccio
+                                    sostenibile all'alimentazione. Ho perso 15 kg e mi sento piena di energia!"</p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/women/43.jpg"
+                                        class="rounded-circle me-3" width="50" alt="Maria Rossi">
+                                    <div>
+                                        <h6 class="mb-0">Maria Rossi</h6>
+                                        <small class="text-muted">Paziente dal 2022</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card h-100 testimonial-card">
-                        <div class="card-body">
-                            <div class="mb-3 text-warning">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
+                    <div class="col-md-4">
+                        <div class="card h-100 testimonial-card">
+                            <div class="card-body">
+                                <div class="mb-3 text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                                <p class="card-text">"Le tecniche di gestione dello stress hanno rivoluzionato la mia
+                                    vita.
+                                    Ora affronto le sfide lavorative con serenità e concentrazione."</p>
                             </div>
-                            <p class="card-text">"Le tecniche di gestione dello stress hanno rivoluzionato la mia vita.
-                                Ora affronto le sfide lavorative con serenità e concentrazione."</p>
-                        </div>
-                        <div class="card-footer bg-transparent">
-                            <div class="d-flex align-items-center">
-                                <img src="https://randomuser.me/api/portraits/men/32.jpg" class="rounded-circle me-3"
-                                    width="50" alt="Luca Bianchi">
-                                <div>
-                                    <h6 class="mb-0">Luca Bianchi</h6>
-                                    <small class="text-muted">Paziente dal 2021</small>
+                            <div class="card-footer bg-transparent">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg"
+                                        class="rounded-circle me-3" width="50" alt="Luca Bianchi">
+                                    <div>
+                                        <h6 class="mb-0">Luca Bianchi</h6>
+                                        <small class="text-muted">Paziente dal 2021</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-4">
-                    <div class="card h-100 testimonial-card">
-                        <div class="card-body">
-                            <div class="mb-3 text-warning">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
+                    <div class="col-md-4">
+                        <div class="card h-100 testimonial-card">
+                            <div class="card-body">
+                                <div class="mb-3 text-warning">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                                <p class="card-text">"A 60 anni mi sento meglio di quando ne avevo 40! Gli esercizi
+                                    dolci e
+                                    l'alimentazione antinfiammatoria hanno eliminato i miei dolori articolari."</p>
                             </div>
-                            <p class="card-text">"A 60 anni mi sento meglio di quando ne avevo 40! Gli esercizi dolci e
-                                l'alimentazione antinfiammatoria hanno eliminato i miei dolori articolari."</p>
-                        </div>
-                        <div class="card-footer bg-transparent">
-                            <div class="d-flex align-items-center">
-                                <img src="https://randomuser.me/api/portraits/women/63.jpg" class="rounded-circle me-3"
-                                    width="50" alt="Anna Verdi">
-                                <div>
-                                    <h6 class="mb-0">Anna Verdi</h6>
-                                    <small class="text-muted">Paziente dal 2020</small>
+                            <div class="card-footer bg-transparent">
+                                <div class="d-flex align-items-center">
+                                    <img src="https://randomuser.me/api/portraits/women/63.jpg"
+                                        class="rounded-circle me-3" width="50" alt="Anna Verdi">
+                                    <div>
+                                        <h6 class="mb-0">Anna Verdi</h6>
+                                        <small class="text-muted">Paziente dal 2020</small>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Blog Preview -->
-    <section class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Ultimi Articoli dal Nostro Blog</h2>
-                <p class="lead text-muted">Consigli pratici per il tuo benessere quotidiano</p>
-            </div>
+        <!-- Blog Preview -->
+        <section class="py-5">
+            <div class="container">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bold">Ultimi Articoli dal Nostro Blog</h2>
+                    <p class="lead text-muted">Consigli pratici per il tuo benessere quotidiano</p>
+                </div>
 
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                            class="card-img-top" alt="Superfoods">
-                        <div class="card-body">
-                            <span class="badge bg-success mb-2">Nutrizione</span>
-                            <h5 class="card-title">5 Superfoods della Tradizione Mediterranea</h5>
-                            <p class="card-text">Scopri gli alimenti ricchi di nutrienti che i nostri nonni consumavano
-                                regolarmente e i loro benefici scientificamente provati.</p>
+                <div class="row g-4">
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                                class="card-img-top" alt="Superfoods">
+                            <div class="card-body">
+                                <span class="badge bg-success mb-2">Nutrizione</span>
+                                <h5 class="card-title">5 Superfoods della Tradizione Mediterranea</h5>
+                                <p class="card-text">Scopri gli alimenti ricchi di nutrienti che i nostri nonni
+                                    consumavano
+                                    regolarmente e i loro benefici scientificamente provati.</p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="#" class="btn btn-sm btn-outline-success">Leggi l'articolo</a>
+                            </div>
                         </div>
-                        <div class="card-footer bg-transparent">
-                            <a href="#" class="btn btn-sm btn-outline-success">Leggi l'articolo</a>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                                class="card-img-top" alt="Meditazione">
+                            <div class="card-body">
+                                <span class="badge bg-primary mb-2">Mindfulness</span>
+                                <h5 class="card-title">Meditazione per Principianti: Guida Pratica</h5>
+                                <p class="card-text">Una semplice routine di 10 minuti al giorno per ridurre lo stress e
+                                    migliorare la concentrazione, adatta anche ai più scettici.</p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="#" class="btn btn-sm btn-outline-success">Leggi l'articolo</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="card h-100">
+                            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
+                                class="card-img-top" alt="Esercizi">
+                            <div class="card-body">
+                                <span class="badge bg-warning text-dark mb-2">Fitness</span>
+                                <h5 class="card-title">Esercizi a Corpo Libero per Tutte le Età</h5>
+                                <p class="card-text">Una sequenza di movimenti dolci che puoi fare a casa, senza
+                                    attrezzi,
+                                    per migliorare mobilità e forza muscolare.</p>
+                            </div>
+                            <div class="card-footer bg-transparent">
+                                <a href="#" class="btn btn-sm btn-outline-success">Leggi l'articolo</a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                            class="card-img-top" alt="Meditazione">
-                        <div class="card-body">
-                            <span class="badge bg-primary mb-2">Mindfulness</span>
-                            <h5 class="card-title">Meditazione per Principianti: Guida Pratica</h5>
-                            <p class="card-text">Una semplice routine di 10 minuti al giorno per ridurre lo stress e
-                                migliorare la concentrazione, adatta anche ai più scettici.</p>
-                        </div>
-                        <div class="card-footer bg-transparent">
-                            <a href="#" class="btn btn-sm btn-outline-success">Leggi l'articolo</a>
-                        </div>
+                <div class="text-center mt-4">
+                    <a href="/blog" class="btn btn-success">Vedi Tutti gli Articoli</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="py-5 newsletter-section">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 text-center">
+                        <h2 class="fw-bold mb-3">Resta Aggiornato</h2>
+                        <p class="lead mb-4">Iscriviti alla nostra newsletter per ricevere consigli esclusivi, ricette
+                            sane
+                            e promozioni speciali.</p>
+
+                        <form class="row g-2 justify-content-center">
+                            <div class="col-md-8">
+                                <input type="email" class="form-control form-control-lg" placeholder="La tua email">
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-success btn-lg w-100">Iscriviti</button>
+                            </div>
+                            <div class="col-12">
+                                <small class="text-muted">Rispettiamo la tua privacy. Potrai disiscriverti in qualsiasi
+                                    momento.</small>
+                            </div>
+                        </form>
                     </div>
                 </div>
-
-                <div class="col-md-4">
-                    <div class="card h-100">
-                        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80"
-                            class="card-img-top" alt="Esercizi">
-                        <div class="card-body">
-                            <span class="badge bg-warning text-dark mb-2">Fitness</span>
-                            <h5 class="card-title">Esercizi a Corpo Libero per Tutte le Età</h5>
-                            <p class="card-text">Una sequenza di movimenti dolci che puoi fare a casa, senza attrezzi,
-                                per migliorare mobilità e forza muscolare.</p>
-                        </div>
-                        <div class="card-footer bg-transparent">
-                            <a href="#" class="btn btn-sm btn-outline-success">Leggi l'articolo</a>
-                        </div>
-                    </div>
-                </div>
             </div>
+        </section>
 
-            <div class="text-center mt-4">
-                <a href="/blog" class="btn btn-success">Vedi Tutti gli Articoli</a>
-            </div>
-        </div>
-    </section>
+        <!-- footer (usa lo stesso del tuo layout principale) -->
+        <%- include('partials/footer') %>
 
-    <!-- Newsletter -->
-    <section class="py-5 newsletter-section">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-lg-8 text-center">
-                    <h2 class="fw-bold mb-3">Resta Aggiornato</h2>
-                    <p class="lead mb-4">Iscriviti alla nostra newsletter per ricevere consigli esclusivi, ricette sane
-                        e promozioni speciali.</p>
-
-                    <form class="row g-2 justify-content-center">
-                        <div class="col-md-8">
-                            <input type="email" class="form-control form-control-lg" placeholder="La tua email">
-                        </div>
-                        <div class="col-md-4">
-                            <button type="submit" class="btn btn-success btn-lg w-100">Iscriviti</button>
-                        </div>
-                        <div class="col-12">
-                            <small class="text-muted">Rispettiamo la tua privacy. Potrai disiscriverti in qualsiasi
-                                momento.</small>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-5 text-white">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4 mb-lg-0">
-                    <h5 class="fw-bold mb-3"><i class="fas fa-leaf me-2"></i>Salute & Benessere Naturale</h5>
-                    <p>Il tuo partner per una vita sana ed equilibrata, nel rispetto della natura e del tuo corpo.</p>
-                    <div class="mt-4">
-                        <a href="#" class="text-white me-3"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-instagram"></i></a>
-                        <a href="#" class="text-white me-3"><i class="fab fa-youtube"></i></a>
-                        <a href="#" class="text-white"><i class="fab fa-pinterest"></i></a>
-                    </div>
-                </div>
-
-                <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
-                    <h5 class="fw-bold mb-3">Link Veloci</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="/" class="text-white text-decoration-none">Home</a></li>
-                        <li class="mb-2"><a href="/about" class="text-white text-decoration-none">Chi Siamo</a></li>
-                        <li class="mb-2"><a href="/services" class="text-white text-decoration-none">Servizi</a></li>
-                        <li class="mb-2"><a href="/blog" class="text-white text-decoration-none">Blog</a></li>
-                        <li><a href="/contact" class="text-white text-decoration-none">Contatti</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
-                    <h5 class="fw-bold mb-3">Servizi</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><a href="/nutrition-consulting"
-                                class="text-white text-decoration-none">Consulenza Nutrizionale</a></li>
-                        <li class="mb-2"><a href="/yoga-classes" class="text-white text-decoration-none">Lezioni di
-                                Yoga</a></li>
-                        <li class="mb-2"><a href="/stress-management" class="text-white text-decoration-none">Gestione
-                                dello Stress</a></li>
-                        <li><a href="/detox-programs" class="text-white text-decoration-none">Programmi Detox</a></li>
-                    </ul>
-                </div>
-
-                <div class="col-lg-3">
-                    <h5 class="fw-bold mb-3">Contatti</h5>
-                    <ul class="list-unstyled">
-                        <li class="mb-2"><i class="fas fa-map-marker-alt me-2"></i> Via del Benessere, 12 - Milano</li>
-                        <li class="mb-2"><i class="fas fa-phone me-2"></i> +39 02 1234567</li>
-                        <li class="mb-2"><i class="fas fa-envelope me-2"></i> info@salutebenessere.it</li>
-                        <li><i class="fas fa-clock me-2"></i> Lun-Ven: 9:00-19:00</li>
-                    </ul>
-                </div>
-            </div>
-
-            <hr class="my-4 bg-light">
-
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center text-md-start">
-                    <p class="mb-0">&copy; 2025 Salute & Benessere Naturale. Tutti i diritti riservati.</p>
-                </div>
-                <div class="col-md-6 text-center text-md-end">
-                    <a href="/privacy" class="text-white text-decoration-none me-3">Privacy Policy</a>
-                    <a href="/terms" class="text-white text-decoration-none">Termini di Servizio</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap JS and dependencies -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+        <!-- Bootstrap JS and dependencies -->
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

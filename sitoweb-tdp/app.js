@@ -17,4 +17,10 @@ app.use(express.static(path.join(__dirname, "public")));
 const healthRoutes = require("./routes/userRoutes");
 app.use("/health", healthRoutes);
 
+
+//timer
+app.get('/timer', (req, res) => {
+    res.render('strumenti/timer');
+});
+
 module.exports = app;

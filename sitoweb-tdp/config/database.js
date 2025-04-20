@@ -5,9 +5,7 @@ console.log("URI Mongo:", process.env.MONGO_URI);
 const uri = process.env.MONGO_URI; // URI presa da .env
 
 mongoose
-  .connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(uri)
   .then(() => console.log("✅ Connesso a MongoDB"))
   .catch((err) => console.error("❌ Errore MongoDB:", err));
+

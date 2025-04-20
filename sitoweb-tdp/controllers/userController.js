@@ -6,23 +6,26 @@ exports.loginForm = (req, res) => {
   res.render("auth/login");
 };
 
-// Login dell'utente
+// Login dell'utente  (aggiunto controllo password)
 exports.login = async (req, res) => {
   try {
-    const { username } = req.body; // Usa solo username dal form
-    const user = await User.findOne({ username }); // Cerca l'utente usando username
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
 
     if (!user) {
       return res.status(400).send("Credenziali errate");
     }
 
-    // Memorizza l'ID dell'utente nella sessione
-    req.session.userId = user._id; // Salviamo l'ID utente nella sessione
-    console.log("ID utente salvato nella sessione:", req.session.userId);
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(400).send("Credenziali errate");
+    }
 
-    // Reindirizza l'utente al forum
+    req.session.userId = user._id;
+    console.log("Login effettuato, userId in sessione:", req.session.userId);
     res.redirect("/forum");
   } catch (err) {
+    console.error("Errore login:", err);
     res.status(500).send("Errore durante il login");
   }
 };

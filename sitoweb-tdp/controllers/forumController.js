@@ -5,10 +5,15 @@ const Comment = require("../models/Comment");
 exports.list = async (req, res) => {
   try {
     const posts = await ForumPost.find()
-      .populate("author", "username")
+      .populate({
+        path: 'author',
+        select: 'username _id'  // Assicurati di includere _id
+      })
       .sort({ createdAt: -1 });
-    res.render("forum/list", { posts, currentUser: req.user });
+      
+    res.render("forum/list", { posts });
   } catch (err) {
+    console.error("Errore nel recupero dei post:", err);
     res.status(500).send("Errore nel recupero dei post.");
   }
 };
@@ -21,19 +26,25 @@ exports.newForm = (req, res) => {
 // CREA UN NUOVO POST
 exports.create = async (req, res) => {
   try {
+    console.log("Dati sessione:", req.session);
+    console.log("Dati body:", req.body);
+    
     const { title, content, category } = req.body;
     if (!title || !content) {
       return res.status(400).send("Titolo e contenuto sono obbligatori.");
     }
 
-    await ForumPost.create({
+    const newPost = await ForumPost.create({
       title,
       content,
       category,
-      author: req.user._id,
+      author: req.session.userId
     });
+
+    console.log("Nuovo post creato:", newPost);
     res.redirect("/forum");
   } catch (err) {
+    console.error("Errore nella creazione del post:", err);
     res.status(500).send("Errore nella creazione del post.");
   }
 };

@@ -8,12 +8,12 @@
                         <i class="fas fa-comments text-success me-3 fs-1"></i>
                         <h1 class="fw-bold mb-0">Forum di Salute e Benessere</h1>
                     </div>
-                    <% if (!currentUser) { %>
+                    <% if (currentUser) { %>
                         <a href="/forum/new" class="btn btn-success">
                             <i class="fas fa-plus me-2"></i>Nuova Discussione
                         </a>
                         <% } else { %>
-                            <a href="/login" class="btn btn-outline-success">
+                            <a href="/auth/login" class="btn btn-outline-success">
                                 <i class="fas fa-sign-in-alt me-2"></i>Accedi per partecipare
                             </a>
                             <% } %>
@@ -53,7 +53,8 @@
                                             <small class="text-muted d-block mb-2">
                                                 <%= post.createdAt.toLocaleDateString() %>
                                             </small>
-                                            <% if (currentUser && currentUser._id.equals(post.author._id)) { %>
+                                            <% if (currentUser &&
+                                                currentUser._id.toString()===post.author._id.toString()) { %>
                                                 <div class="btn-group btn-group-sm">
                                                     <a href="/forum/<%= post._id %>/edit"
                                                         class="btn btn-outline-warning">

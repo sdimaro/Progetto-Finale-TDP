@@ -3,18 +3,20 @@ const router = express.Router();
 const forumController = require("../controllers/forumController");
 
 // Middleware per controllare se l'utente è loggato
-/*
 function isAuthenticated(req, res, next) {
-  if (req.isAuthenticated()) {
+  if (req.session.userId) { // Modificato da req.isAuthenticated()
     return next();
   }
   res.redirect("/auth/login");
 }
-*/
+
+
 // Rotte forum
 router.get("/", forumController.list);
-router.get("/new", forumController.newForm);
-router.post("/new", forumController.create);
+// Applica il middleware alle rotte che richiedono autenticazione
+router.get("/new", isAuthenticated, forumController.newForm);
+router.post("/new", isAuthenticated, forumController.create);
+
 router.get("/:id", forumController.show);
 
 module.exports = router;

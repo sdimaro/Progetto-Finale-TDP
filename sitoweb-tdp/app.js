@@ -1,9 +1,13 @@
 const express = require("express");
-require("./config/database");
-
+const mongoose = require("mongoose");
 const path = require("path");
 const session = require("express-session");
+const User = require("./models/User"); // Importa il modello User
+
 const app = express();
+
+// Connessione al database
+require("./config/database");
 
 // Middleware
 app.use(express.urlencoded({ extended: true }));
@@ -24,6 +28,25 @@ app.set("views", path.join(__dirname, "views"));
 
 // Static files
 app.use(express.static(path.join(__dirname, "public")));
+
+// Middleware per l'utente corrente (modificato)
+app.use(async (req, res, next) => {
+  res.locals.currentUser = null;
+  if (req.session.userId) {
+    try {
+      const user = await User.findById(req.session.userId).select('username _id');
+      if (user) {
+        res.locals.currentUser = {
+          _id: user._id,
+          username: user.username
+        };
+      }
+    } catch (err) {
+      console.error("Errore nel recupero dell'utente:", err);
+    }
+  }
+  next();
+});
 
 // Rotte
 const forumRoutes = require("./routes/forumRoutes");

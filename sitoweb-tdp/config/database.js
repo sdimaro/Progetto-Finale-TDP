@@ -1,3 +1,13 @@
-/*Contiene le configurazioni del progetto, come la connessione al database o le impostazioni generali.
+const mongoose = require("mongoose");
+require("dotenv").config(); // Carica le variabili da .env
+console.log("URI Mongo:", process.env.MONGO_URI);
 
-Esempio: database.js → contiene le impostazioni per connettersi al DB (nome DB, utente, password...).*/
+const uri = process.env.MONGO_URI; // URI presa da .env
+
+mongoose
+  .connect(uri, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => console.log("✅ Connesso a MongoDB"))
+  .catch((err) => console.error("❌ Errore MongoDB:", err));

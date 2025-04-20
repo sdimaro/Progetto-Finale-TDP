@@ -1,64 +1,65 @@
-// Dati temporanei in memoria (mock)
-let healthTopics = [
-  {
-    id: 1,
-    title: "Alimentazione sana",
-    description: "Mangiare equilibrato per stare meglio.",
-  },
-  {
-    id: 2,
-    title: "Attività fisica",
-    description: "Muoversi ogni giorno migliora la salute.",
-  },
-];
+const User = require("../models/User");
+const bcrypt = require("bcryptjs");
 
-let nextId = 3;
-
-// LIST - Mostra tutti gli argomenti
-exports.list = (req, res) => {
-  res.render("health/list", { topics: healthTopics });
+// Form per il login
+exports.loginForm = (req, res) => {
+  res.render("auth/login");
 };
 
-// NEW FORM - Mostra il form per aggiungere un nuovo argomento
-exports.newForm = (req, res) => {
-  res.render("health/new");
+// Login dell'utente
+exports.login = async (req, res) => {
+  try {
+    const { username } = req.body; // Usa solo username dal form
+    const user = await User.findOne({ username }); // Cerca l'utente usando username
+
+    if (!user) {
+      return res.status(400).send("Credenziali errate");
+    }
+
+    // Memorizza l'ID dell'utente nella sessione
+    req.session.userId = user._id; // Salviamo l'ID utente nella sessione
+    console.log("ID utente salvato nella sessione:", req.session.userId);
+
+    // Reindirizza l'utente al forum
+    res.redirect("/forum");
+  } catch (err) {
+    res.status(500).send("Errore durante il login");
+  }
 };
 
-// CREATE - Salva un nuovo argomento
-exports.create = (req, res) => {
-  const { title, description } = req.body;
-  healthTopics.push({ id: nextId++, title, description });
-  res.redirect("/health");
+// Form per la registrazione
+exports.registerForm = (req, res) => {
+  res.render("auth/register");
 };
 
-// SHOW - Mostra i dettagli di un argomento
-exports.show = (req, res) => {
-  const topic = healthTopics.find((t) => t.id == req.params.id);
-  if (!topic) return res.status(404).send("Argomento non trovato");
-  res.render("health/show", { topic });
+// Registrazione dell'utente
+exports.register = async (req, res) => {
+  try {
+    const { username, email, password } = req.body;
+    // Hash della password con bcrypt
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = await User.create({
+      username,
+      email,
+      password: hashedPassword,
+    });
+
+    // Memorizza l'ID dell'utente nella sessione
+    req.session.userId = user._id; // Salviamo l'ID utente nella sessione
+    res.redirect("/forum");
+  } catch (err) {
+    res.status(500).send("Errore durante la registrazione");
+  }
 };
 
-// EDIT FORM - Mostra il form per modificare un argomento
-exports.editForm = (req, res) => {
-  const topic = healthTopics.find((t) => t.id == req.params.id);
-  if (!topic) return res.status(404).send("Argomento non trovato");
-  res.render("health/edit", { topic });
-};
-
-// UPDATE - Aggiorna un argomento
-exports.update = (req, res) => {
-  const topic = healthTopics.find((t) => t.id == req.params.id);
-  if (!topic) return res.status(404).send("Argomento non trovato");
-
-  const { title, description } = req.body;
-  topic.title = title;
-  topic.description = description;
-
-  res.redirect("/health");
-};
-
-// DELETE - Elimina un argomento
-exports.delete = (req, res) => {
-  healthTopics = healthTopics.filter((t) => t.id != req.params.id);
-  res.redirect("/health");
+// Logout dell'utente
+exports.logout = (req, res) => {
+  // Rimuovi l'ID dell'utente dalla sessione
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).send("Errore nel logout");
+    }
+    res.redirect("/login");
+  });
 };

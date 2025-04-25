@@ -34,11 +34,13 @@ app.use(async (req, res, next) => {
   res.locals.currentUser = null;
   if (req.session.userId) {
     try {
-      const user = await User.findById(req.session.userId).select('username _id');
+      const user = await User.findById(req.session.userId).select(
+        "username _id"
+      );
       if (user) {
         res.locals.currentUser = {
           _id: user._id,
-          username: user.username
+          username: user.username,
         };
       }
     } catch (err) {

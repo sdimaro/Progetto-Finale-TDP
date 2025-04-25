@@ -6,11 +6,11 @@ exports.list = async (req, res) => {
   try {
     const posts = await ForumPost.find()
       .populate({
-        path: 'author',
-        select: 'username _id'  // Assicurati di includere _id
+        path: "author",
+        select: "username _id", // Assicurati di includere _id
       })
       .sort({ createdAt: -1 });
-      
+
     res.render("forum/list", { posts });
   } catch (err) {
     console.error("Errore nel recupero dei post:", err);
@@ -28,7 +28,7 @@ exports.create = async (req, res) => {
   try {
     console.log("Dati sessione:", req.session);
     console.log("Dati body:", req.body);
-    
+
     const { title, content, category } = req.body;
     if (!title || !content) {
       return res.status(400).send("Titolo e contenuto sono obbligatori.");
@@ -38,7 +38,7 @@ exports.create = async (req, res) => {
       title,
       content,
       category,
-      author: req.session.userId
+      author: req.session.userId,
     });
 
     console.log("Nuovo post creato:", newPost);

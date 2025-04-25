@@ -1,7 +1,10 @@
 const app = require("./app");
 
 app.get("/", (req, res) => {
-  res.render("home");
+  res.render("home", {
+    success: null,
+    error: null,
+  });
 });
 
 // Porta su cui il server ascolta

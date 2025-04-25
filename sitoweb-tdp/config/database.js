@@ -8,4 +8,3 @@ mongoose
   .connect(uri)
   .then(() => console.log("✅ Connesso a MongoDB"))
   .catch((err) => console.error("❌ Errore MongoDB:", err));
-

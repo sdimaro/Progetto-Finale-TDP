@@ -1,40 +1,58 @@
-<!-- views/auth/register.ejs -->
-<!DOCTYPE html>
-<html lang="it">
+<%- include('../partials/header') %>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registrazione</title>
-</head>
+    <main class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-5">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <h2 class="card-title text-center mb-4">Registrati</h2>
 
-<body>
-    <h1>Registrati</h1>
+                        <% if (typeof errors !=='undefined' && errors.length> 0) { %>
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    <% errors.forEach(function(err){ %>
+                                        <li>
+                                            <%= err.msg %>
+                                        </li>
+                                        <% }) %>
+                                </ul>
+                            </div>
+                            <% } %>
 
-    <!-- Modulo di registrazione -->
-    <form action="/auth/register" method="POST">
-        <div>
-            <label for="username">Nome Utente:</label>
-            <input type="text" id="username" name="username" required>
+                                <form action="/auth/register" method="POST">
+                                    <div class="mb-3">
+                                        <label for="username" class="form-label">Nome Utente</label>
+                                        <input type="text" class="form-control" id="username" name="username"
+                                            placeholder="Inserisci nome utente" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" name="email"
+                                            placeholder="esempio@dominio.com" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="password" name="password"
+                                            placeholder="Minimo 6 caratteri" required minlength="6">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="confirmPassword" class="form-label">Conferma Password</label>
+                                        <input type="password" class="form-control" id="confirmPassword"
+                                            name="confirmPassword" placeholder="Reinserisci password" required
+                                            minlength="6">
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-success">Registrati</button>
+                                    </div>
+                                </form>
+
+                                <p class="text-center mt-3 small">
+                                    Hai già un account? <a href="/auth/login">Accedi</a>
+                                </p>
+                    </div>
+                </div>
+            </div>
         </div>
+    </main>
 
-        <div>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-
-        <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required minlength="6">
-        </div>
-
-        <div>
-            <button type="submit">Registrati</button>
-        </div>
-    </form>
-
-    <p>Hai già un account? <a href="/login">Accedi</a></p>
-
-</body>
-
-</html>
+    <%- include('../partials/footer') %>

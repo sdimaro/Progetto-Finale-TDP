@@ -57,6 +57,9 @@ app.use("/forum", forumRoutes);
 const authRoutes = require("./routes/authRoutes");
 app.use("/auth", authRoutes);
 
+const strumenti = require("./routes/strumentiRoutes");
+app.use("/strumenti", strumenti);
+
 // Middleware per la gestione degli errori
 app.use((err, req, res, next) => {
   console.error(err); // Stampa l'errore in console per il debug

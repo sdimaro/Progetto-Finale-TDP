@@ -21,6 +21,73 @@ body {
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Dropdown Hover Effects - Added to your existing CSS */
+.navbar .dropdown-menu {
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 0 0 8px 8px;
+    margin-top: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .dropdown-item {
+    color: white;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.navbar .dropdown-item:hover, 
+.navbar .dropdown-item:focus {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.navbar .nav-link {
+    color: white !important;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+}
+
+.navbar .nav-link:hover, 
+.navbar .nav-link:focus {
+    color: white;
+    background-color: var(--secondary-color);
+}
+/* Dropdown Wrapper Styles */
+.dropdown-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.nav-item.dropdown > .dropdown-wrapper > .nav-link {
+    padding-right: 0.5rem; /* Space between text and caret */
+}
+
+.nav-item.dropdown > .dropdown-wrapper > .dropdown-toggle {
+    padding: 0.5rem;
+    color: white;
+    cursor: pointer;
+}
+
+/* Caret styling */
+.dropdown-toggle::after {
+    display: inline-block;
+    margin-left: 0;
+    vertical-align: middle;
+    content: "";
+    border-top: 0.3em solid;
+    border-right: 0.3em solid transparent;
+    border-bottom: 0;
+    border-left: 0.3em solid transparent;
+}
+
+/* Mobile behavior */
+@media (max-width: 991.98px) {
+    .nav-item.dropdown > .dropdown-wrapper > .nav-link {
+        pointer-events: none; /* Make only the toggle clickable on mobile */
+    }
+}
 .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
     background-size: cover;

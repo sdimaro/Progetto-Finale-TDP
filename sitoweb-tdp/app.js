@@ -57,18 +57,13 @@ app.use("/forum", forumRoutes);
 const authRoutes = require("./routes/authRoutes");
 app.use("/auth", authRoutes);
 
-const strumenti = require("./routes/strumentiRoutes");
-app.use("/strumenti", strumenti);
+const strumentiRoutes = require("./routes/strumentiRoutes");
+app.use("/strumenti", strumentiRoutes);
 
 // Middleware per la gestione degli errori
 app.use((err, req, res, next) => {
   console.error(err); // Stampa l'errore in console per il debug
   res.status(500).send("Errore del server");
-});
-
-// Timer
-app.get("/timer", (req, res) => {
-  res.render("strumenti/timer");
 });
 
 module.exports = app;

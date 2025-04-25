@@ -1,0 +1,96 @@
+<%- include('../partials/header') %>
+
+<!-- Hero Section -->
+<section class="hero-section text-center text-white" style="background-color: #5cb85c;">
+    <div class="container py-5">
+        <h1 class="display-4 fw-bold mb-4">Strumenti Benessere</h1>
+        <p class="lead mb-4">Scegli lo strumento che fa per te</p>
+    </div>
+</section>
+
+<!-- Strumenti Disponibili -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <!-- Card Timer -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-clock fa-3x"></i>
+                        </div>
+                        <h3 class="card-title">Timer</h3>
+                        <p class="card-text">Per meditazione, allenamento e pause rigeneranti con suoni rilassanti.</p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="/strumenti/timer" class="btn btn-success w-100">Apri Timer</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card IMC -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-weight fa-3x"></i>
+                        </div>
+                        <h3 class="card-title">Calcolo IMC</h3>
+                        <p class="card-text">Calcola il tuo Indice di Massa Corporea e scopri la tua classificazione.</p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="/strumenti/imc" class="btn btn-success w-100">Apri Calcolatore IMC</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Calorie -->
+            <div class="col-md-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body text-center">
+                        <div class="feature-icon mb-3">
+                            <i class="fas fa-fire fa-3x"></i>
+                        </div>
+                        <h3 class="card-title">Fabbisogno Calorico</h3>
+                        <p class="card-text">Scopri quante calorie assumere giornalmente in base al tuo stile di vita.</p>
+                    </div>
+                    <div class="card-footer bg-transparent">
+                        <a href="/strumenti/calorie" class="btn btn-success w-100">Apri Calcolatore Calorie</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sezione Informazioni -->
+        <div class="row mt-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h3 class="text-center mb-4">Come usare gli strumenti</h3>
+                        <div class="row">
+                            <div class="col-md-4 mb-3">
+                                <h5><i class="fas fa-clock me-2"></i>Timer</h5>
+                                <p>Imposta il tempo desiderato, scegli un suono di avviso e avvia il countdown per le tue attività.</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <h5><i class="fas fa-weight me-2"></i>IMC</h5>
+                                <p>Inserisci altezza e peso per calcolare il tuo indice e scoprire la tua categoria di peso.</p>
+                            </div>
+                            <div class="col-md-4 mb-3">
+                                <h5><i class="fas fa-fire me-2"></i>Calorie</h5>
+                                <p>Compila tutti i campi per ottenere una stima del tuo fabbisogno calorico giornaliero.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

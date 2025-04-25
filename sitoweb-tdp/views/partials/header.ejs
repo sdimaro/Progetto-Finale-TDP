@@ -39,15 +39,18 @@
                         <a class="nav-link" href="/fitness">Fitness</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="strumentiDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Strumenti
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="strumentiDropdown">
-                            <li><a class="dropdown-item" href="/imc">Calcola il tuo IMC</a></li>
-                            <li><a class="dropdown-item" href="/timer">Timer</a></li>
-                            <li><a class="dropdown-item" href="/kcal">Calcola fabbisogno calorico</a></li>
-                        </ul>
+                        <div class="dropdown-wrapper">
+                            <a class="nav-link" href="/strumenti">Strumenti</a>
+                            <a class="dropdown-toggle" id="strumentiDropdown" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                <span class="visually-hidden">Toggle dropdown</span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="strumentiDropdown">
+                                <li><a class="dropdown-item" href="/strumenti/timer">Timer</a></li>
+                                <li><a class="dropdown-item" href="/strumenti/imc">Calcola il tuo IMC</a></li>
+                                <li><a class="dropdown-item" href="/strumenti/CalcolaKCal">Calcola fabbisogno calorico</a></li>
+                            </ul>
+                        </div>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/about">Chi Siamo</a>
@@ -59,3 +62,36 @@
             </div>
         </div>
     </nav>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Make dropdowns show on hover
+    const dropdownElements = document.querySelectorAll('.nav-item.dropdown');
+    
+    dropdownElements.forEach(el => {
+        const toggle = el.querySelector('.dropdown-toggle');
+        const link = el.querySelector('.nav-link');
+        
+        // Desktop hover behavior
+        el.addEventListener('mouseenter', function() {
+            if (window.innerWidth >= 992) {
+                const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(toggle);
+                bsDropdown.show();
+            }
+        });
+        
+        el.addEventListener('mouseleave', function() {
+            if (window.innerWidth >= 992) {
+                const bsDropdown = bootstrap.Dropdown.getInstance(toggle);
+                if (bsDropdown) bsDropdown.hide();
+            }
+        });
+        
+        // Mobile behavior - ensure link doesn't navigate when clicking dropdown
+        if (window.innerWidth < 992) {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+            });
+        }
+    });
+});
+        </script>

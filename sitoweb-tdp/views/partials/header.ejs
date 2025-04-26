@@ -11,7 +11,77 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        .auth-section {
+            margin-left: auto;
+            display: flex;
+            gap: 15px;
+        }
 
+        .auth-link {
+            color: #1b4332 !important;
+            /* Verde scuro */
+            border: 2px solid #1b4332 !important;
+            padding: 6px 15px !important;
+            border-radius: 20px !important;
+            margin: 0 3px !important;
+            background-color: rgba(27, 67, 50, 0.1) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .auth-link:hover {
+            background-color: #1b4332 !important;
+            color: white !important;
+            transform: translateY(-1px);
+        }
+
+        .logout-link {
+            color: #dc3545 !important;
+            /* Rosso */
+            border: 2px solid #dc3545 !important;
+            padding: 6px 15px !important;
+            border-radius: 20px !important;
+            margin: 0 3px !important;
+            background-color: rgba(220, 53, 69, 0.1) !important;
+            transition: all 0.3s ease !important;
+        }
+
+        .logout-link:hover {
+            background-color: #dc3545 !important;
+            color: white !important;
+            transform: translateY(-1px);
+        }
+
+        /* Testo utente loggato */
+        .username-greeting {
+            color: #f8f9fa !important;
+            margin-right: 15px;
+            font-weight: 500;
+        }
+
+        /* Responsive mobile */
+        @media (max-width: 992px) {
+            .auth-section {
+                flex-direction: column;
+                width: 90%;
+                margin: 15px auto 0;
+                padding-top: 15px;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+            }
+
+            .auth-link,
+            .logout-link {
+                width: 100% !important;
+                margin: 5px 0 !important;
+            }
+
+            .username-greeting {
+                text-align: center;
+                margin-right: 0;
+                padding: 10px 0;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -41,14 +111,15 @@
                     <li class="nav-item dropdown">
                         <div class="dropdown-wrapper">
                             <a class="nav-link" href="/strumenti">Strumenti</a>
-                            <a class="dropdown-toggle" id="strumentiDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="dropdown-toggle" id="strumentiDropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 <span class="visually-hidden">Toggle dropdown</span>
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="strumentiDropdown">
                                 <li><a class="dropdown-item" href="/strumenti/timer">Timer</a></li>
                                 <li><a class="dropdown-item" href="/strumenti/imc">Calcola il tuo IMC</a></li>
-                                <li><a class="dropdown-item" href="/strumenti/CalcolaKCal">Calcola fabbisogno calorico</a></li>
+                                <li><a class="dropdown-item" href="/strumenti/CalcolaKCal">Calcola fabbisogno
+                                        calorico</a></li>
                             </ul>
                         </div>
                     </li>
@@ -59,39 +130,64 @@
                         <a class="nav-link" href="/contact">Contatti</a>
                     </li>
                 </ul>
+
+                <!-- Aggiunta sezione autenticazione -->
+                <div class="auth-section">
+                    <% if(currentUser) { %>
+                        <span class="nav-link text-white">
+                            <i class="fas fa-user me-2"></i>
+                            <%= currentUser.username %>
+                        </span>
+                        <a class="logout-link nav-link" href="/auth/logout">
+                            <i class="fas fa-sign-out-alt me-2"></i>Logout
+                        </a>
+                        <% } else { %>
+                            <a class="auth-link nav-link" href="/auth/login">
+                                <i class="fas fa-sign-in-alt me-2"></i>Accedi
+                            </a>
+                            <a class="auth-link nav-link" href="/auth/register">
+                                <i class="fas fa-user-plus me-2"></i>Registrati
+                            </a>
+                            <% } %>
+                </div>
             </div>
         </div>
     </nav>
+
+    <!-- Script ORIGINALE intatto -->
     <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Make dropdowns show on hover
-    const dropdownElements = document.querySelectorAll('.nav-item.dropdown');
-    
-    dropdownElements.forEach(el => {
-        const toggle = el.querySelector('.dropdown-toggle');
-        const link = el.querySelector('.nav-link');
-        
-        // Desktop hover behavior
-        el.addEventListener('mouseenter', function() {
-            if (window.innerWidth >= 992) {
-                const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(toggle);
-                bsDropdown.show();
-            }
-        });
-        
-        el.addEventListener('mouseleave', function() {
-            if (window.innerWidth >= 992) {
-                const bsDropdown = bootstrap.Dropdown.getInstance(toggle);
-                if (bsDropdown) bsDropdown.hide();
-            }
-        });
-        
-        // Mobile behavior - ensure link doesn't navigate when clicking dropdown
-        if (window.innerWidth < 992) {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
+        document.addEventListener('DOMContentLoaded', function () {
+            // Make dropdowns show on hover
+            const dropdownElements = document.querySelectorAll('.nav-item.dropdown');
+
+            dropdownElements.forEach(el => {
+                const toggle = el.querySelector('.dropdown-toggle');
+                const link = el.querySelector('.nav-link');
+
+                // Desktop hover behavior
+                el.addEventListener('mouseenter', function () {
+                    if (window.innerWidth >= 992) {
+                        const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(toggle);
+                        bsDropdown.show();
+                    }
+                });
+
+                el.addEventListener('mouseleave', function () {
+                    if (window.innerWidth >= 992) {
+                        const bsDropdown = bootstrap.Dropdown.getInstance(toggle);
+                        if (bsDropdown) bsDropdown.hide();
+                    }
+                });
+
+                // Mobile behavior - ensure link doesn't navigate when clicking dropdown
+                if (window.innerWidth < 992) {
+                    link.addEventListener('click', function (e) {
+                        e.preventDefault();
+                    });
+                }
             });
-        }
-    });
-});
-        </script>
+        });
+    </script>
+</body>
+
+</html>

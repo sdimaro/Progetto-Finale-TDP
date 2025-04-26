@@ -29,19 +29,18 @@ app.set("views", path.join(__dirname, "views"));
 // Static files
 app.use(express.static(path.join(__dirname, "public")));
 
-// Middleware per l'utente corrente (modificato)
+// Middleware per l'utente corrente
 app.use(async (req, res, next) => {
   res.locals.currentUser = null;
+  req.user = null;
   if (req.session.userId) {
     try {
       const user = await User.findById(req.session.userId).select(
         "username _id"
       );
       if (user) {
-        res.locals.currentUser = {
-          _id: user._id,
-          username: user.username,
-        };
+        req.user = user; // ← qui
+        res.locals.currentUser = user;
       }
     } catch (err) {
       console.error("Errore nel recupero dell'utente:", err);

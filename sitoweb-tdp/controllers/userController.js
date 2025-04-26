@@ -1,24 +1,44 @@
 const User = require("../models/User");
-const bcrypt = require("bcryptjs");
+const crypto = require("crypto");
 
 // Form per il login
 exports.loginForm = (req, res) => {
   res.render("auth/login");
 };
 
-// Login dell'utente  (aggiunto controllo password)
+// Login dell'utente (aggiunto controllo password)
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
+
+    console.log("Password inserita (login):", password); // Log della password inserita nel login
+
     const user = await User.findOne({ username });
 
     if (!user) {
-      return res.status(400).send("Credenziali errate");
+      return res.status(400).send("Utente non iscritto");
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).send("Credenziali errate");
+    console.log("Utente trovato:", user.username); // Log dell'utente trovato nel database
+
+    console.log("Tipo password (login):", typeof password, "valore:", password);
+    console.log(
+      "Tipo password utente (database):",
+      typeof user.password,
+      "valore:",
+      user.password
+    );
+
+    // Hash della password inserita con SHA-256
+    const hashedPassword = crypto
+      .createHash("sha256")
+      .update(password)
+      .digest("hex");
+    console.log("Hash della password inserita (SHA-256):", hashedPassword); // Log dell'hash della password
+
+    // Confronto della password hashata con quella salvata nel database
+    if (hashedPassword !== user.password) {
+      return res.status(400).send("Password errata");
     }
 
     req.session.userId = user._id;
@@ -39,8 +59,13 @@ exports.registerForm = (req, res) => {
 exports.register = async (req, res) => {
   try {
     const { username, email, password } = req.body;
-    // Hash della password con bcrypt
-    const hashedPassword = await bcrypt.hash(password, 10);
+
+    console.log("Pass prima del hash (registrazione):", password); // Log della password prima dell'hash
+    const hashedPassword = crypto
+      .createHash("sha256")
+      .update(password)
+      .digest("hex");
+    console.log("Hash della password (registrazione):", hashedPassword); // Log dell'hash generato
 
     const user = await User.create({
       username,
@@ -48,21 +73,30 @@ exports.register = async (req, res) => {
       password: hashedPassword,
     });
 
-    // Memorizza l'ID dell'utente nella sessione
-    req.session.userId = user._id; // Salviamo l'ID utente nella sessione
+    // Verifica subito dopo la registrazione
+    const checkHash = crypto
+      .createHash("sha256")
+      .update(password)
+      .digest("hex");
+    console.log(
+      "Confronto hash subito dopo la registrazione:",
+      checkHash === user.password
+    ); // Confronto dell'hash subito dopo la registrazione
+
+    req.session.userId = user._id;
     res.redirect("/forum");
   } catch (err) {
+    console.error("Errore durante la registrazione:", err);
     res.status(500).send("Errore durante la registrazione");
   }
 };
 
 // Logout dell'utente
 exports.logout = (req, res) => {
-  // Rimuovi l'ID dell'utente dalla sessione
   req.session.destroy((err) => {
     if (err) {
       return res.status(500).send("Errore nel logout");
     }
-    res.redirect("/login");
+    res.redirect("/");
   });
 };

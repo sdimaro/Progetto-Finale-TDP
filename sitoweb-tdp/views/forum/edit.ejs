@@ -5,7 +5,7 @@
             <div class="col-lg-8">
                 <div class="d-flex align-items-center mb-4">
                     <i class="fas fa-edit text-success me-3 fs-1"></i>
-                    <h1 class="fw-bold mb-0">Modifica Argomento</h1>
+                    <h1 class="fw-bold mb-0">Modifica Discussione</h1>
                 </div>
 
                 <form action="/forum/<%= topic._id %>" method="POST" class="bg-light-green p-4 rounded shadow-sm">
@@ -15,10 +15,21 @@
                             value="<%= topic.title %>" required>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="content" class="form-label fw-bold">Contenuto:</label>
+                        <textarea class="form-control" id="content" name="content" rows="5"
+                            required><%= topic.content %></textarea>
+                    </div>
+
                     <div class="mb-4">
-                        <label for="description" class="form-label fw-bold">Descrizione:</label>
-                        <textarea class="form-control" id="description" name="description" rows="5"
-                            required><%= topic.description %></textarea>
+                        <label for="category" class="form-label fw-bold">Categoria:</label>
+                        <select class="form-select" id="category" name="category" required>
+                            <option value="" disabled selected>Seleziona una categoria</option>
+                            <option value="nutrition">Nutrizione</option>
+                            <option value="fitness">Fitness</option>
+                            <option value="mental-health">Salute Mentale</option>
+                            <option value="general">Generale</option>
+                        </select>
                     </div>
 
                     <div class="d-flex justify-content-between align-items-center">
@@ -26,12 +37,15 @@
                             <i class="fas fa-save me-2"></i>Salva modifiche
                         </button>
                         <a href="/forum" class="text-decoration-none text-muted">
-                            <i class="fas fa-arrow-left me-1"></i>Torna alla lista
+                            <i class="fas fa-arrow-left me-1"></i>Torna al forum
                         </a>
                     </div>
                 </form>
             </div>
         </div>
     </main>
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 
     <%- include('../partials/footer') %>

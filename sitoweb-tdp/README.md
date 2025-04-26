@@ -11,10 +11,12 @@ x Danilov:
 
 x Bayoud:
 
-- sistemare sezione commenti forum
-  ✅Mettere CSS corretto in auth/login e auth/register
-  ✅creare back-end (database e invio mail automatico) per sezione newsletter
-- Aggiungere le pagine delle sezioni come contattaci e chi siamo
+✅sistemare sezione commenti, delete e update del form
+✅creare back-end (database e invio mail automatico) per sezione newsletter
+✅cambiare metodo di crittografia delle password e risolvere problema di accesso
+✅Mettere CSS in auth/login e auth/register e aggiungere in header logout accedi e registrati
+
+- test e sistemare eventuali errori
 
 ---
 

@@ -16,7 +16,7 @@ x Bayoud:
 ✅cambiare metodo di crittografia delle password e risolvere problema di accesso
 ✅Mettere CSS in auth/login e auth/register e aggiungere in header logout accedi e registrati
 
-- test e sistemare eventuali errori
+- test e sistemare eventuali errori, aggiungere numero commenti in list
 
 ---
 

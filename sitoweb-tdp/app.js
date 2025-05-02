@@ -59,6 +59,9 @@ app.use("/auth", authRoutes);
 const strumentiRoutes = require("./routes/strumentiRoutes");
 app.use("/strumenti", strumentiRoutes);
 
+const apiRoutes = require('./routes/apiRoutes');
+app.use('/api', apiRoutes);
+
 // Middleware per la gestione degli errori
 app.use((err, req, res, next) => {
   console.error(err); // Stampa l'errore in console per il debug

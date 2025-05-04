@@ -163,7 +163,65 @@
         document.getElementById(rowId).classList.add('table-active');
     }
 </script>
-
+<% if (isLoggedIn) { %>
+    <div class="text-center mt-4">
+        <button id="saveResultsBtn" class="btn btn-primary">Salva i miei dati</button>
+        <div id="saveMessage" class="mt-2" style="display: none;"></div>
+    </div>
+    <% } else { %>
+    <div class="alert alert-info mt-4">
+        <a href="/auth/login">Accedi</a> per salvare i tuoi risultati
+    </div>
+    <% } %>
+    
+    <script>
+        document.getElementById('saveResultsBtn')?.addEventListener('click', async function() {
+            const btn = this;
+            btn.disabled = true;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Salvataggio...';
+            
+            try {
+                const imcData = {
+                    altezza: document.getElementById('altezza').value,
+                    peso: document.getElementById('peso').value,
+                    imc: document.getElementById('imcValue').textContent,
+                    classificazione: document.getElementById('classificationAlert').textContent
+                        .replace('Classificazione: ', '').split(' - ')[0]
+                };
+    
+                const response = await fetch('/imc/save', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(imcData)
+                });
+    
+                const result = await response.json();
+                
+                const message = document.getElementById('saveMessage');
+                message.style.display = 'block';
+                if (response.ok) {
+                    message.className = 'text-success';
+                    message.textContent = 'Dati salvati con successo!';
+                    btn.style.display = 'none';
+                } else {
+                    message.className = 'text-danger';
+                    message.textContent = result.error || 'Errore nel salvataggio';
+                    btn.disabled = false;
+                    btn.textContent = 'Salva i miei dati';
+                }
+            } catch (error) {
+                console.error('Errore:', error);
+                const message = document.getElementById('saveMessage');
+                message.style.display = 'block';
+                message.className = 'text-danger';
+                message.textContent = 'Errore di connessione';
+                btn.disabled = false;
+                btn.textContent = 'Salva i miei dati';
+            }
+        });
+    </script>
 <%- include('../partials/footer') %>
 
 <!-- Bootstrap JS -->

@@ -6,7 +6,6 @@ exports.imcForm = (req, res) => {
     res.render("strumenti/imc");
 }
 
-
 exports.CKCalForm = (req, res) => {
     res.render("strumenti/CKCal");
 }

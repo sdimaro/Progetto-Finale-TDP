@@ -10,7 +10,6 @@ exports.renderApprofondimenti = (req, res) => {
 
         // Modifica qui il percorso della vista
         res.render('approfondimenti/approfondimenti', {
-            title: 'Approfondimenti',
             activeTab: activeTab
         });
         

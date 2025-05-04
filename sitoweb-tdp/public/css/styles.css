@@ -412,3 +412,27 @@ footer {
         font-size: 1rem;
     }
 }
+
+/* Contatti Page Styles */
+.hero-section-contatti {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0;
+}
+
+.contact-card {
+    border-radius: 10px;
+    transition: transform 0.3s ease;
+}
+
+.contact-card:hover {
+    transform: translateY(-5px);
+}
+
+@media (max-width: 768px) {
+    .hero-section-contatti {
+        padding: 60px 0;
+    }
+}

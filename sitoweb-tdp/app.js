@@ -65,6 +65,9 @@ app.use("/approfondimenti", approfondimentiRoutes);
 const articoliRoutes = require("./routes/articoliRoutes");
 app.use("/articoli", articoliRoutes);
 
+const contattiRoutes = require("./routes/contattiRoutes");
+app.use("/contatti", contattiRoutes);
+
 const apiRoutes = require('./routes/apiRoutes');
 app.use('/api', apiRoutes);
 

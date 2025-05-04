@@ -1,0 +1,98 @@
+<%- include('../partials/header') %>
+
+<!-- Hero Section -->
+<section class="hero-section-contatti text-center text-white">
+    <div class="container py-5">
+        <h1 class="display-4 fw-bold mb-4">Contattaci</h1>
+        <p class="lead mb-4">Hai domande o vuoi maggiori informazioni? Scrivici e ti risponderemo al più presto.</p>
+    </div>
+</section>
+
+<!-- Contact Form Section -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="card shadow-sm">
+                    <div class="card-body p-5">
+                        <% if (showSuccessBanner) { %>
+                            <div class="success-banner py-3 mb-4">
+                                <div class="container text-center">
+                                    <div class="d-inline-flex align-items-center bg-success bg-opacity-10 p-3 rounded">
+                                        <i class="fas fa-check-circle text-success me-2 fs-4"></i>
+                                        <span class="text-success">Messaggio inviato con successo!</span>
+                                    </div>
+                                </div>
+                            </div>
+                        <% } %>
+
+                        <form action="/contatti" method="POST">
+                            <div class="mb-4">
+                                <label for="name" class="form-label">Nome e Cognome</label>
+                                <input type="text" class="form-control form-control-lg" id="name" name="name" required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control form-control-lg" id="email" name="email" required>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="subject" class="form-label">Oggetto</label>
+                                <select class="form-select form-select-lg" id="subject" name="subject" required>
+                                    <option value="" selected disabled>Seleziona un'opzione</option>
+                                    <option value="Informazioni">Informazioni generali</option>
+                                    <option value="Collaborazioni">Proposte di collaborazione</option>
+                                    <option value="Feedback">Feedback sul sito</option>
+                                    <option value="Altro">Altro</option>
+                                </select>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Messaggio</label>
+                                <textarea class="form-control form-control-lg" id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-success btn-lg">Invia Messaggio</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Info Section -->
+<section class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4 text-center">
+                <div class="p-4 rounded-3 bg-light-green h-100">
+                    <i class="fas fa-map-marker-alt fa-3x mb-3 text-success"></i>
+                    <h3>Dove Siamo</h3>
+                    <p class="mb-0">ITIS Leonardo Da Vinci<br>Via Toscana 10, Parma, PR Italia</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4 text-center">
+                <div class="p-4 rounded-3 bg-light-green h-100">
+                    <i class="fas fa-phone fa-3x mb-3 text-success"></i>
+                    <h3>Telefono</h3>
+                    <p class="mb-0">+39 12 3456789<br>Lun-Ven: 9:00-18:00</p>
+                </div>
+            </div>
+            
+            <div class="col-md-4 text-center">
+                <div class="p-4 rounded-3 bg-light-green h-100">
+                    <i class="fas fa-envelope fa-3x mb-3 text-success"></i>
+                    <h3>Email</h3>
+                    <p class="mb-0">saiman.bayoud@itis.pr.it<br>supporto@benesserenaturale.it</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('../partials/footer') %>

@@ -59,6 +59,9 @@ app.use("/auth", authRoutes);
 const strumentiRoutes = require("./routes/strumentiRoutes");
 app.use("/strumenti", strumentiRoutes);
 
+const approfondimentiRoutes = require("./routes/approfondimentiRoutes");
+app.use("/approfondimenti", approfondimentiRoutes);
+
 const apiRoutes = require('./routes/apiRoutes');
 app.use('/api', apiRoutes);
 

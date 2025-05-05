@@ -1,5 +1,5 @@
 class ApiController {
-    // Calcolo IMC
+    // Calcolo IMC (rimane invariato)
     static calcolaIMC(req, res) {
         const { altezza, peso } = req.body;
         
@@ -33,13 +33,14 @@ class ApiController {
         });
     }
 
-    // Calcolo Fabbisogno Calorico (Formula di Mifflin-St Jeor)
+    // Calcolo Fabbisogno Calorico (Formula di Mifflin-St Jeor) modificato
     static calcolaCalorie(req, res) {
         const { sesso, eta, peso, altezza, attivita, obiettivo } = req.body;
         
-        if (!sesso || !eta || !peso || !altezza || !attivita || !obiettivo) {
+        // Verifica dei campi obbligatori (obiettivo è opzionale)
+        if (!sesso || !eta || !peso || !altezza || !attivita) {
             return res.status(400).json({ 
-                error: 'Tutti i campi sono richiesti: sesso, eta, peso, altezza, attivita, obiettivo' 
+                error: 'Campi richiesti: sesso, eta, peso, altezza, attivita (obiettivo è opzionale)' 
             });
         }
 
@@ -51,8 +52,11 @@ class ApiController {
             metabolismoBasale = 10 * peso + 6.25 * altezza - 5 * eta - 161;
         }
 
+        // Se obiettivo non è fornito, usiamo 0
+        const obiettivoValue = obiettivo !== undefined ? parseInt(obiettivo) : 0;
+
         // Calcolo fabbisogno calorico giornaliero
-        const fabbisogno = metabolismoBasale * attivita + parseInt(obiettivo);
+        const fabbisogno = metabolismoBasale * attivita + obiettivoValue;
 
         res.json({
             metabolismoBasale: metabolismoBasale.toFixed(0),

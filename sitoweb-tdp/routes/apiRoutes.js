@@ -11,5 +11,8 @@ router.post('/imc', validateIMCData, ApiController.calcolaIMC);
 // Rotta per il calcolo del fabbisogno calorico
 router.post('/calorie', validateCalorieData, ApiController.calcolaCalorie);
 
+router.get('/docs', (req, res) => {
+    res.render('webservice/docs');
+});
 
 module.exports = router;

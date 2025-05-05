@@ -1,0 +1,357 @@
+<%- include('../partials/header') %>
+
+<!-- Hero Section -->
+<section class="hero-section text-center text-white" style="background-color: #6c757d;">
+    <div class="container py-5">
+        <h1 class="display-4 fw-bold mb-4">Documentazione API</h1>
+        <p class="lead mb-4">Guida completa per integrare i nostri servizi pubblici</p>
+    </div>
+</section>
+
+<!-- API Documentation -->
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <!-- Sidebar Navigation -->
+            <div class="col-md-3">
+                <div class="sticky-top pt-3">
+                    <h5 class="mb-3">API Disponibili</h5>
+                    <nav class="nav flex-column">
+                        <a class="nav-link active" href="#api-imc">Calcolo IMC</a>
+                        <a class="nav-link" href="#api-calorie">Fabbisogno Calorico</a>
+                    </nav>
+                    <hr>
+                    <h5 class="mb-3">Strumenti</h5>
+                    <a href="#api-tester" class="btn btn-sm btn-outline-success mb-2">Test API</a>
+                    <div class="alert alert-info mt-3 small">
+                        <strong>Base URL:</strong> <code>https://tuosito.com/api</code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="col-md-9">
+                <!-- API IMC -->
+                <div id="api-imc" class="api-section mb-5">
+                    <h2 class="mb-4">API Calcolo IMC</h2>
+                    <div class="card mb-4">
+                        <div class="card-header bg-dark text-white">
+                            <code>POST /imc</code>
+                            <span class="badge bg-success ms-2">PUBLIC</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Descrizione</h5>
+                            <p class="card-text">Calcola l'Indice di Massa Corporea (IMC) e la classificazione corrispondente.</p>
+                            
+                            <h5 class="mt-4">Parametri</h5>
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Parametro</th>
+                                        <th>Tipo</th>
+                                        <th>Obbligatorio</th>
+                                        <th>Descrizione</th>
+                                        <th>Valori Accettati</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>altezza</td>
+                                        <td>number</td>
+                                        <td>✓</td>
+                                        <td>Altezza in centimetri</td>
+                                        <td>100-250 cm</td>
+                                    </tr>
+                                    <tr>
+                                        <td>peso</td>
+                                        <td>number</td>
+                                        <td>✓</td>
+                                        <td>Peso in chilogrammi</td>
+                                        <td>30-300 kg</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h5 class="mt-4">Risposta di Successo</h5>
+                            <pre class="bg-light p-3 rounded"><code>{
+    "success": true,
+    "imc": 22.5,
+    "classificazione": "Normopeso",
+    "rischio": "Basso",
+    "interpretazione": "Il tuo IMC è 22.5 (Normopeso)..."
+}</code></pre>
+
+                            <h5 class="mt-4">Errori</h5>
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Codice</th>
+                                        <th>Messaggio</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>400</td>
+                                        <td>Parametri mancanti o non validi</td>
+                                    </tr>
+                                    <tr>
+                                        <td>500</td>
+                                        <td>Errore interno del server</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h5 class="mt-4">Esempio Curl</h5>
+                            <pre class="bg-light p-3 rounded"><code>curl -X POST https://tuosito.com/api/imc \
+-H "Content-Type: application/json" \
+-d '{"altezza": 175, "peso": 70}'</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Calorie -->
+                <div id="api-calorie" class="api-section mb-5">
+                    <h2 class="mb-4">API Fabbisogno Calorico</h2>
+                    <div class="card mb-4">
+                        <div class="card-header bg-dark text-white">
+                            <code>POST /calorie</code>
+                            <span class="badge bg-success ms-2">PUBLIC</span>
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">Descrizione</h5>
+                            <p class="card-text">Calcola il fabbisogno calorico giornaliero usando la formula Mifflin-St Jeor.</p>
+                            
+                            <h5 class="mt-4">Parametri</h5>
+                            <table class="table table-bordered">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Parametro</th>
+                                        <th>Tipo</th>
+                                        <th>Obbligatorio</th>
+                                        <th>Descrizione</th>
+                                        <th>Valori</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>sesso</td>
+                                        <td>string</td>
+                                        <td>✓</td>
+                                        <td>Sesso biologico</td>
+                                        <td>"maschio" o "femmina"</td>
+                                    </tr>
+                                    <tr>
+                                        <td>eta</td>
+                                        <td>number</td>
+                                        <td>✓</td>
+                                        <td>Età in anni</td>
+                                        <td>15-100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>peso</td>
+                                        <td>number</td>
+                                        <td>✓</td>
+                                        <td>Peso in kg</td>
+                                        <td>30-300</td>
+                                    </tr>
+                                    <tr>
+                                        <td>altezza</td>
+                                        <td>number</td>
+                                        <td>✓</td>
+                                        <td>Altezza in cm</td>
+                                        <td>100-250</td>
+                                    </tr>
+                                    <tr>
+                                        <td>attivita</td>
+                                        <td>number</td>
+                                        <td>✓</td>
+                                        <td>Livello di attività fisica</td>
+                                        <td>1.2 - 1.9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>obiettivo</td>
+                                        <td>number</td>
+                                        <td>✓</td>
+                                        <td>Obiettivo calorico</td>
+                                        <td>-500, 0, +500</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <h5 class="mt-4">Risposta di Successo</h5>
+                            <pre class="bg-light p-3 rounded"><code>{
+    "success": true,
+    "metabolismoBasale": 1650,
+    "fabbisognoCalorico": 2200,
+    "interpretazione": "Il tuo fabbisogno calorico giornaliero è di circa 2200 kcal"
+}</code></pre>
+
+                            <h5 class="mt-4">Esempio Curl</h5>
+                            <pre class="bg-light p-3 rounded"><code>curl -X POST https://tuosito.com/api/calorie \
+-H "Content-Type: application/json" \
+-d '{
+    "sesso": "maschio",
+    "eta": 30,
+    "peso": 75,
+    "altezza": 180,
+    "attivita": 1.55,
+    "obiettivo": -200
+}'</code></pre>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- API Tester -->
+                <div id="api-tester" class="api-section mb-5">
+                    <h2 class="mb-4">Test API</h2>
+                    <div class="card">
+                        <div class="card-header bg-primary text-white">
+                            Strumento di Test Interattivo
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-3">
+                                <label class="form-label">Seleziona API</label>
+                                <select class="form-select" id="api-select">
+                                    <option value="/imc">Calcolo IMC</option>
+                                    <option value="/calorie">Fabbisogno Calorico</option>
+                                </select>
+                            </div>
+
+                            <div id="imc-params" class="api-params">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="altezza" class="form-label">Altezza (cm)</label>
+                                        <input type="number" class="form-control" id="altezza" placeholder="175" min="100" max="250">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="peso" class="form-label">Peso (kg)</label>
+                                        <input type="number" class="form-control" id="peso" placeholder="70" min="30" max="300">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="calorie-params" class="api-params" style="display: none;">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Sesso</label>
+                                        <select class="form-select" id="sesso">
+                                            <option value="maschio">Maschio</option>
+                                            <option value="femmina">Femmina</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="eta" class="form-label">Età</label>
+                                        <input type="number" class="form-control" id="eta" placeholder="30" min="15" max="100">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="calorie-peso" class="form-label">Peso (kg)</label>
+                                        <input type="number" class="form-control" id="calorie-peso" placeholder="70" min="30" max="300">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="calorie-altezza" class="form-label">Altezza (cm)</label>
+                                        <input type="number" class="form-control" id="calorie-altezza" placeholder="175" min="100" max="250">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="attivita" class="form-label">Livello Attività</label>
+                                    <select class="form-select" id="attivita">
+                                        <option value="1.2">Sedentario</option>
+                                        <option value="1.375">Leggermente attivo</option>
+                                        <option value="1.55" selected>Moderatamente attivo</option>
+                                        <option value="1.725">Molto attivo</option>
+                                        <option value="1.9">Estremamente attivo</option>
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="obiettivo" class="form-label">Obiettivo</label>
+                                    <select class="form-select" id="obiettivo">
+                                        <option value="-500">Perdere peso</option>
+                                        <option value="0" selected>Mantenere peso</option>
+                                        <option value="500">Aumentare peso</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <button id="test-api-btn" class="btn btn-primary mt-3">Test API</button>
+                            
+                            <div class="mt-4">
+                                <h5>Risposta:</h5>
+                                <pre id="api-response" class="bg-light p-3 rounded" style="min-height: 150px; max-height: 300px; overflow: auto;">{ "message": "Seleziona un'API e clicca 'Test API'" }</pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Script per API Tester -->
+<script>
+    // Mostra/nascondi parametri in base all'API selezionata
+    document.getElementById('api-select').addEventListener('change', function() {
+        document.querySelectorAll('.api-params').forEach(el => {
+            el.style.display = 'none';
+        });
+        
+        const selectedApi = this.value.replace('/', '') + '-params';
+        document.getElementById(selectedApi).style.display = 'block';
+    });
+
+    // Gestione test API
+    document.getElementById('test-api-btn').addEventListener('click', async function() {
+        const apiEndpoint = document.getElementById('api-select').value;
+        const responseElement = document.getElementById('api-response');
+        const btn = this;
+        
+        btn.disabled = true;
+        btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Invio...';
+        responseElement.textContent = 'Caricamento...';
+        
+        try {
+            let requestBody = {};
+            let url = '/api' + apiEndpoint;
+            
+            if (apiEndpoint === '/imc') {
+                requestBody = {
+                    altezza: parseFloat(document.getElementById('altezza').value),
+                    peso: parseFloat(document.getElementById('peso').value)
+                };
+            } 
+            else if (apiEndpoint === '/calorie') {
+                requestBody = {
+                    sesso: document.getElementById('sesso').value,
+                    eta: parseInt(document.getElementById('eta').value),
+                    peso: parseFloat(document.getElementById('calorie-peso').value),
+                    altezza: parseFloat(document.getElementById('calorie-altezza').value),
+                    attivita: parseFloat(document.getElementById('attivita').value),
+                    obiettivo: parseInt(document.getElementById('obiettivo').value)
+                };
+            }
+            
+            const response = await fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(requestBody)
+            });
+            
+            const data = await response.json();
+            responseElement.textContent = JSON.stringify(data, null, 2);
+            
+        } catch (error) {
+            responseElement.textContent = `Errore: ${error.message}`;
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'Test API';
+        }
+    });
+
+    // Inizializza mostrando i parametri corretti
+    document.getElementById('imc-params').style.display = 'block';
+</script>
+
+<%- include('../partials/footer') %>

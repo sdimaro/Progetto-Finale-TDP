@@ -1,4 +1,5 @@
 const User = require("../models/User");
+const ImcData = require("../models/ImcData");
 const crypto = require("crypto");
 
 // Form per il login
@@ -43,7 +44,7 @@ exports.login = async (req, res) => {
 
     req.session.userId = user._id;
     console.log("Login effettuato, userId in sessione:", req.session.userId);
-    res.redirect("/forum");
+    res.redirect("/");
   } catch (err) {
     console.error("Errore login:", err);
     res.status(500).send("Errore durante il login");
@@ -84,7 +85,7 @@ exports.register = async (req, res) => {
     ); // Confronto dell'hash subito dopo la registrazione
 
     req.session.userId = user._id;
-    res.redirect("/forum");
+    res.redirect("/");
   } catch (err) {
     console.error("Errore durante la registrazione:", err);
     res.status(500).send("Errore durante la registrazione");
@@ -99,4 +100,53 @@ exports.logout = (req, res) => {
     }
     res.redirect("/");
   });
+};
+
+exports.showProfile = async (req, res) => {
+  try {
+    const userId = req.user._id;
+
+    const user = await User.findById(userId).lean();
+    const imcRecords = await ImcData.find({ userId })
+      .sort({ createdAt: 1 })
+      .lean();
+
+    let chartUrl = null;
+
+    if (imcRecords.length > 0) {
+      const labels = imcRecords.map((d) =>
+        new Date(d.createdAt).toLocaleDateString()
+      );
+      const data = imcRecords.map((d) => d.imc);
+
+      const chartConfig = {
+        type: "line",
+        data: {
+          labels,
+          datasets: [
+            {
+              label: "IMC nel tempo",
+              data,
+              borderColor: "green",
+              fill: false,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      };
+
+      chartUrl = `https://quickchart.io/chart?c=${encodeURIComponent(JSON.stringify(chartConfig))}`;
+    }
+
+    res.render("user/profilo", { user, imcRecords, chartUrl });
+  } catch (err) {
+    console.error("Errore nel caricamento del profilo:", err);
+    res.status(500).send("Errore nel caricamento del profilo");
+  }
 };

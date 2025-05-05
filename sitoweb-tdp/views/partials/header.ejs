@@ -11,77 +11,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- CSS -->
     <link rel="stylesheet" href="/css/styles.css">
-    <style>
-        .auth-section {
-            margin-left: auto;
-            display: flex;
-            gap: 15px;
-        }
-
-        .auth-link {
-            color: #1b4332 !important;
-            /* Verde scuro */
-            border: 2px solid #1b4332 !important;
-            padding: 6px 15px !important;
-            border-radius: 20px !important;
-            margin: 0 3px !important;
-            background-color: rgba(27, 67, 50, 0.1) !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .auth-link:hover {
-            background-color: #1b4332 !important;
-            color: white !important;
-            transform: translateY(-1px);
-        }
-
-        .logout-link {
-            color: #dc3545 !important;
-            /* Rosso */
-            border: 2px solid #dc3545 !important;
-            padding: 6px 15px !important;
-            border-radius: 20px !important;
-            margin: 0 3px !important;
-            background-color: rgba(220, 53, 69, 0.1) !important;
-            transition: all 0.3s ease !important;
-        }
-
-        .logout-link:hover {
-            background-color: #dc3545 !important;
-            color: white !important;
-            transform: translateY(-1px);
-        }
-
-        /* Testo utente loggato */
-        .username-greeting {
-            color: #f8f9fa !important;
-            margin-right: 15px;
-            font-weight: 500;
-        }
-
-        /* Responsive mobile */
-        @media (max-width: 992px) {
-            .auth-section {
-                flex-direction: column;
-                width: 90%;
-                margin: 15px auto 0;
-                padding-top: 15px;
-                border-top: 1px solid rgba(255, 255, 255, 0.2);
-            }
-
-            .auth-link,
-            .logout-link {
-                width: 100% !important;
-                margin: 5px 0 !important;
-            }
-
-            .username-greeting {
-                text-align: center;
-                margin-right: 0;
-                padding: 10px 0;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -131,10 +60,10 @@
                 <!-- Aggiunta sezione autenticazione -->
                 <div class="auth-section">
                     <% if(currentUser) { %>
-                        <span class="nav-link text-white">
+                        <a class="nav-link" href="/auth/profilo">
                             <i class="fas fa-user me-2"></i>
                             <%= currentUser.username %>
-                        </span>
+                        </a>
                         <a class="logout-link nav-link" href="/auth/logout">
                             <i class="fas fa-sign-out-alt me-2"></i>Logout
                         </a>

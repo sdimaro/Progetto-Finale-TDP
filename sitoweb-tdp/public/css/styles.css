@@ -14,6 +14,96 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+
+/* Imposta il contenuto principale (che non cambia l'HTML) per occupare tutto lo spazio disponibile */
+.main-content {
+    flex: 1;
+}
+
+/* Footer si comporterà come prima */
+footer {
+    margin-top: auto;
+    /* Questo "spinge" il footer in fondo */
+}
+
+.auth-section {
+    margin-left: auto;
+    display: flex;
+    gap: 15px;
+}
+
+.auth-link {
+    color: #1b4332 !important;
+    /* Verde scuro */
+    border: 2px solid #1b4332 !important;
+    padding: 6px 15px !important;
+    border-radius: 20px !important;
+    margin: 0 3px !important;
+    background-color: rgba(27, 67, 50, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+.auth-link:hover {
+    background-color: #1b4332 !important;
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+.logout-link {
+    color: #dc3545 !important;
+    /* Rosso */
+    border: 2px solid #dc3545 !important;
+    padding: 6px 15px !important;
+    border-radius: 20px !important;
+    margin: 0 3px !important;
+    background-color: rgba(220, 53, 69, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+.logout-link:hover {
+    background-color: #dc3545 !important;
+    color: white !important;
+    transform: translateY(-1px);
+}
+
+/* Testo utente loggato */
+.username-greeting {
+    color: #f8f9fa !important;
+    margin-right: 15px;
+    font-weight: 500;
+}
+
+/* Responsive mobile */
+@media (max-width: 992px) {
+    .auth-section {
+        flex-direction: column;
+        width: 90%;
+        margin: 15px auto 0;
+        padding-top: 15px;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .auth-link,
+    .logout-link {
+        width: 100% !important;
+        margin: 5px 0 !important;
+    }
+
+    .username-greeting {
+        text-align: center;
+        margin-right: 0;
+        padding: 10px 0;
+    }
 }
 
 .navbar {
@@ -36,7 +126,7 @@ body {
     transition: all 0.3s ease;
 }
 
-.navbar .dropdown-item:hover, 
+.navbar .dropdown-item:hover,
 .navbar .dropdown-item:focus {
     background-color: var(--secondary-color);
     color: white;
@@ -48,11 +138,12 @@ body {
     transition: all 0.3s ease;
 }
 
-.navbar .nav-link:hover, 
+.navbar .nav-link:hover,
 .navbar .nav-link:focus {
     color: white;
     background-color: var(--secondary-color);
 }
+
 /* Dropdown Wrapper Styles */
 .dropdown-wrapper {
     position: relative;
@@ -60,11 +151,12 @@ body {
     align-items: center;
 }
 
-.nav-item.dropdown > .dropdown-wrapper > .nav-link {
-    padding-right: 0.5rem; /* Space between text and caret */
+.nav-item.dropdown>.dropdown-wrapper>.nav-link {
+    padding-right: 0.5rem;
+    /* Space between text and caret */
 }
 
-.nav-item.dropdown > .dropdown-wrapper > .dropdown-toggle {
+.nav-item.dropdown>.dropdown-wrapper>.dropdown-toggle {
     padding: 0.5rem;
     color: white;
     cursor: pointer;
@@ -84,10 +176,12 @@ body {
 
 /* Mobile behavior */
 @media (max-width: 991.98px) {
-    .nav-item.dropdown > .dropdown-wrapper > .nav-link {
-        pointer-events: none; /* Make only the toggle clickable on mobile */
+    .nav-item.dropdown>.dropdown-wrapper>.nav-link {
+        pointer-events: none;
+        /* Make only the toggle clickable on mobile */
     }
 }
+
 .hero-section {
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
     background-size: cover;
@@ -144,7 +238,7 @@ footer {
     color: var(--light-timer);
     padding: 2.5rem;
     border-radius: 28px;
-    box-shadow: 
+    box-shadow:
         0 12px 30px rgba(21, 83, 45, 0.25),
         inset 0 4px 8px rgba(255, 255, 255, 0.1);
     max-width: 500px;
@@ -282,28 +376,29 @@ footer {
     .timer-display h2 {
         font-size: 3.5rem;
     }
-    
+
     .compact-input-group {
         gap: 10px;
     }
-    
+
     .time-input-container {
         width: 80px;
     }
-    
+
     .timer-controls {
         gap: 8px;
     }
-    
+
     .timer-btn {
         padding: 8px 16px;
         font-size: 0.9rem;
     }
 }
+
 /* Articoli Page Styles - Aggiungi queste regole in fondo al tuo file CSS esistente */
 .hero-section-articles {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
     background-size: cover;
     background-position: center;
     padding: 100px 0;
@@ -393,7 +488,7 @@ footer {
     .article-card-img {
         height: 150px;
     }
-    
+
     .article-title {
         font-size: 1.8rem;
     }
@@ -403,11 +498,11 @@ footer {
     .hero-section-articles {
         padding: 60px 0;
     }
-    
+
     .article-title {
         font-size: 1.5rem;
     }
-    
+
     .article-lead {
         font-size: 1rem;
     }
@@ -415,8 +510,8 @@ footer {
 
 /* Contatti Page Styles */
 .hero-section-contatti {
-    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
-                url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
     background-size: cover;
     background-position: center;
     padding: 100px 0;

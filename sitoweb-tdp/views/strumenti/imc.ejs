@@ -1,230 +1,249 @@
 <%- include('../partials/header') %>
 
-<!-- Hero Section -->
-<section class="hero-section text-center text-white bg-success">
-    <div class="container py-5">
-        <h1 class="display-4 fw-bold mb-4">Calcolatore IMC</h1>
-        <p class="lead mb-4">Inserisci i tuoi dati per calcolare l'Indice di Massa Corporea</p>
-    </div>
-</section>
+    <!-- Hero Section -->
+    <section class="hero-section text-center text-white bg-success">
+        <div class="container py-5">
+            <h1 class="display-4 fw-bold mb-4">Calcolatore IMC</h1>
+            <p class="lead mb-4">Inserisci i tuoi dati per calcolare l'Indice di Massa Corporea</p>
+        </div>
+    </section>
 
-<!-- Form Base -->
-<section class="py-5 bg-light">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-6">
-                <div class="card shadow">
-                    <div class="card-body">
-                        <h2 class="text-center mb-4">Dati Personali</h2>
-                        
-                        <form id="imcForm">
-                            <div class="mb-3">
-                                <label for="altezza" class="form-label">Altezza (cm)</label>
-                                <input type="number" class="form-control" id="altezza" name="altezza" placeholder="Es. 175" min="100" max="250" required>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="peso" class="form-label">Peso (kg)</label>
-                                <input type="number" class="form-control" id="peso" name="peso" placeholder="Es. 70" min="30" max="300" required>
-                            </div>
-                            
-                            <button type="submit" class="btn btn-success w-100" id="calculateBtn">Calcola</button>
-                        </form>
+    <!-- Form Base -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <h2 class="text-center mb-4">Dati Personali</h2>
+
+                            <form id="imcForm">
+                                <div class="mb-3">
+                                    <label for="altezza" class="form-label">Altezza (cm)</label>
+                                    <input type="number" class="form-control" id="altezza" name="altezza"
+                                        placeholder="Es. 175" min="100" max="250" required>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="peso" class="form-label">Peso (kg)</label>
+                                    <input type="number" class="form-control" id="peso" name="peso" placeholder="Es. 70"
+                                        min="30" max="300" required>
+                                </div>
+
+                                <button type="submit" class="btn btn-success w-100" id="calculateBtn">Calcola</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Sezione Risultati -->
-<section class="py-5 bg-light-green" id="resultsSection" style="display: none;">
-    <div class="container text-center">
-        <h3>Il tuo risultato</h3>
-        <div class="display-4 fw-bold my-3" id="imcValue">0</div>
-        <div class="alert" id="classificationAlert" role="alert"></div>
-        
-        <div class="mt-4">
-            <h4>Classificazione IMC</h4>
-            <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead class="table-success">
-                        <tr>
-                            <th>IMC</th>
-                            <th>Classificazione</th>
-                            <th>Rischio</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr id="underweightRow">
-                            <td>&lt; 18.5</td>
-                            <td>Sottopeso</td>
-                            <td>Moderato</td>
-                        </tr>
-                        <tr id="normalRow">
-                            <td>18.5 - 24.9</td>
-                            <td>Normopeso</td>
-                            <td>Basso</td>
-                        </tr>
-                        <tr id="overweightRow">
-                            <td>25 - 29.9</td>
-                            <td>Sovrappeso</td>
-                            <td>Moderato</td>
-                        </tr>
-                        <tr id="obeseRow">
-                            <td>&ge; 30</td>
-                            <td>Obeso</td>
-                            <td>Alto</td>
-                        </tr>
-                    </tbody>
-                </table>
+    <!-- Sezione Risultati -->
+    <section class="py-5 bg-light-green" id="resultsSection" style="display: none;">
+        <div class="container text-center">
+            <h3>Il tuo risultato</h3>
+            <div class="display-4 fw-bold my-3" id="imcValue">0</div>
+            <div class="alert" id="classificationAlert" role="alert"></div>
+
+            <div class="mt-4">
+                <h4>Classificazione IMC</h4>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-success">
+                            <tr>
+                                <th>IMC</th>
+                                <th>Classificazione</th>
+                                <th>Rischio</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="underweightRow">
+                                <td>&lt; 18.5</td>
+                                <td>Sottopeso</td>
+                                <td>Moderato</td>
+                            </tr>
+                            <tr id="normalRow">
+                                <td>18.5 - 24.9</td>
+                                <td>Normopeso</td>
+                                <td>Basso</td>
+                            </tr>
+                            <tr id="overweightRow">
+                                <td>25 - 29.9</td>
+                                <td>Sovrappeso</td>
+                                <td>Moderato</td>
+                            </tr>
+                            <tr id="obeseRow">
+                                <td>&ge; 30</td>
+                                <td>Obeso</td>
+                                <td>Alto</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- Script per chiamata API -->
-<script>
-    document.getElementById('imcForm').addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        // Mostra loader
-        const calculateBtn = document.getElementById('calculateBtn');
-        calculateBtn.disabled = true;
-        calculateBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Calcolando...';
-        
-        try {
-            // Raccogli i dati dal form
-            const formData = {
-                altezza: document.getElementById('altezza').value,
-                peso: document.getElementById('peso').value
-            };
-            
-            // Chiamata API
-            const response = await fetch('/api/imc', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            });
-            
-            if (!response.ok) {
-                throw new Error('Errore nel calcolo');
-            }
-            
-            const data = await response.json();
-            
-            // Mostra i risultati
-            document.getElementById('imcValue').textContent = data.imc;
-            document.getElementById('classificationAlert').textContent = 
-                `Classificazione: ${data.classificazione} - Rischio: ${data.rischio}`;
-            
-            // Aggiungi classe alert in base alla classificazione
-            const alert = document.getElementById('classificationAlert');
-            alert.className = 'alert'; // Resetta le classi
-            if (data.classificazione === 'Sottopeso') {
-                alert.classList.add('alert-warning');
-                highlightRow('underweightRow');
-            } else if (data.classificazione === 'Normopeso') {
-                alert.classList.add('alert-success');
-                highlightRow('normalRow');
-            } else if (data.classificazione === 'Sovrappeso') {
-                alert.classList.add('alert-warning');
-                highlightRow('overweightRow');
-            } else {
-                alert.classList.add('alert-danger');
-                highlightRow('obeseRow');
-            }
-            
-            // Mostra la sezione risultati
-            document.getElementById('resultsSection').style.display = 'block';
-            
-            // Scroll ai risultati
-            document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
-            
-        } catch (error) {
-            console.error('Errore:', error);
-            alert('Si è verificato un errore durante il calcolo. Riprova più tardi.');
-        } finally {
-            // Ripristina il pulsante
-            calculateBtn.disabled = false;
-            calculateBtn.textContent = 'Calcola';
-        }
-    });
-
-    function highlightRow(rowId) {
-        // Resetta tutte le righe
-        document.querySelectorAll('tbody tr').forEach(row => {
-            row.classList.remove('table-active');
-        });
-        
-        // Evidenzia la riga corretta
-        document.getElementById(rowId).classList.add('table-active');
-    }
-</script>
-<% if (isLoggedIn) { %>
-    <div class="text-center mt-4">
-        <button id="saveResultsBtn" class="btn btn-primary">Salva i miei dati</button>
-        <div id="saveMessage" class="mt-2" style="display: none;"></div>
-    </div>
-    <% } else { %>
-    <div class="alert alert-info mt-4">
-        <a href="/auth/login">Accedi</a> per salvare i tuoi risultati
-    </div>
-    <% } %>
-    
+    <!-- Script per chiamata API -->
     <script>
-        document.getElementById('saveResultsBtn')?.addEventListener('click', async function() {
-            const btn = this;
-            btn.disabled = true;
-            btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Salvataggio...';
-            
+        document.getElementById('imcForm').addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            // Mostra loader
+            const calculateBtn = document.getElementById('calculateBtn');
+            calculateBtn.disabled = true;
+            calculateBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Calcolando...';
+
             try {
-                const imcData = {
+                // Raccogli i dati dal form
+                const formData = {
                     altezza: document.getElementById('altezza').value,
-                    peso: document.getElementById('peso').value,
-                    imc: document.getElementById('imcValue').textContent,
-                    classificazione: document.getElementById('classificationAlert').textContent
-                        .replace('Classificazione: ', '').split(' - ')[0]
+                    peso: document.getElementById('peso').value
                 };
-    
-                const response = await fetch('/strumenti/imc/save', {
+
+                // Chiamata API
+                const response = await fetch('/api/imc', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify(imcData)
+                    body: JSON.stringify(formData)
                 });
-    
-                const result = await response.json();
-                
-                const message = document.getElementById('saveMessage');
-                message.style.display = 'block';
-                if (response.ok) {
-                    message.className = 'text-success';
-                    message.textContent = 'Dati salvati con successo!';
-                    btn.style.display = 'none';
-                } else {
-                    message.className = 'text-danger';
-                    message.textContent = result.error || 'Errore nel salvataggio';
-                    btn.disabled = false;
-                    btn.textContent = 'Salva i miei dati';
+
+                if (!response.ok) {
+                    throw new Error('Errore nel calcolo');
                 }
+
+                const data = await response.json();
+
+                // Mostra i risultati
+                document.getElementById('imcValue').textContent = data.imc;
+                document.getElementById('classificationAlert').textContent =
+                    `Classificazione: ${data.classificazione} - Rischio: ${data.rischio}`;
+
+                // Aggiungi classe alert in base alla classificazione
+                const alert = document.getElementById('classificationAlert');
+                alert.className = 'alert'; // Resetta le classi
+                if (data.classificazione === 'Sottopeso') {
+                    alert.classList.add('alert-warning');
+                    highlightRow('underweightRow');
+                } else if (data.classificazione === 'Normopeso') {
+                    alert.classList.add('alert-success');
+                    highlightRow('normalRow');
+                } else if (data.classificazione === 'Sovrappeso') {
+                    alert.classList.add('alert-warning');
+                    highlightRow('overweightRow');
+                } else {
+                    alert.classList.add('alert-danger');
+                    highlightRow('obeseRow');
+                }
+
+                // Mostra la sezione risultati
+                document.getElementById('resultsSection').style.display = 'block';
+
+                // Scroll ai risultati
+                document.getElementById('resultsSection').scrollIntoView({ behavior: 'smooth' });
+
             } catch (error) {
                 console.error('Errore:', error);
-                const message = document.getElementById('saveMessage');
-                message.style.display = 'block';
-                message.className = 'text-danger';
-                message.textContent = 'Errore di connessione';
-                btn.disabled = false;
-                btn.textContent = 'Salva i miei dati';
+                alert('Si è verificato un errore durante il calcolo. Riprova più tardi.');
+            } finally {
+                // Ripristina il pulsante "Calcola"
+                calculateBtn.disabled = false;
+                calculateBtn.textContent = 'Calcola';
+
+                // Resetta il bottone di salvataggio
+                const saveBtn = document.getElementById('saveResultsBtn');
+                const saveMsg = document.getElementById('saveMessage');
+
+                if (saveBtn) {
+                    saveBtn.disabled = false;
+                    saveBtn.textContent = 'Salva i miei dati';
+                    saveBtn.style.display = 'inline-block';
+                }
+
+                if (saveMsg) {
+                    saveMsg.style.display = 'none';
+                    saveMsg.className = '';
+                    saveMsg.textContent = '';
+                }
             }
         });
-    </script>
-<%- include('../partials/footer') %>
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        function highlightRow(rowId) {
+            // Resetta tutte le righe
+            document.querySelectorAll('tbody tr').forEach(row => {
+                row.classList.remove('table-active');
+            });
+
+            // Evidenzia la riga corretta
+            document.getElementById(rowId).classList.add('table-active');
+        }
+    </script>
+    <% if (isLoggedIn) { %>
+        <div class="text-center my-4">
+            <button id="saveResultsBtn" class="btn btn-primary">Salva i miei dati</button>
+            <div id="saveMessage" class="my-2" style="display: none;"></div>
+        </div>
+        <% } else { %>
+            <div class="alert alert-info mt-4">
+                <a href="/auth/login">Accedi</a> per salvare i tuoi risultati
+            </div>
+            <% } %>
+
+                <script>
+                    document.getElementById('saveResultsBtn')?.addEventListener('click', async function () {
+                        const btn = this;
+                        btn.disabled = true;
+                        btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Salvataggio...';
+
+                        try {
+                            const imcData = {
+                                altezza: document.getElementById('altezza').value,
+                                peso: document.getElementById('peso').value,
+                                imc: document.getElementById('imcValue').textContent,
+                                classificazione: document.getElementById('classificationAlert').textContent
+                                    .replace('Classificazione: ', '').split(' - ')[0]
+                            };
+
+                            const response = await fetch('/strumenti/imc/save', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                body: JSON.stringify(imcData)
+                            });
+
+                            const result = await response.json();
+
+                            const message = document.getElementById('saveMessage');
+                            message.style.display = 'block';
+                            if (response.ok) {
+                                message.className = 'text-success';
+                                message.textContent = 'Dati salvati con successo!';
+                                btn.style.display = 'none';
+                            } else {
+                                message.className = 'text-danger';
+                                message.textContent = result.error || 'Errore nel salvataggio';
+                                btn.disabled = false;
+                                btn.textContent = 'Salva i miei dati';
+                            }
+                        } catch (error) {
+                            console.error('Errore:', error);
+                            const message = document.getElementById('saveMessage');
+                            message.style.display = 'block';
+                            message.className = 'text-danger';
+                            message.textContent = 'Errore di connessione';
+                            btn.disabled = false;
+                            btn.textContent = 'Salva i miei dati';
+                        }
+                    });
+                </script>
+                <%- include('../partials/footer') %>
+
+                    <!-- Bootstrap JS -->
+                    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+                    </body>
+
+                    </html>

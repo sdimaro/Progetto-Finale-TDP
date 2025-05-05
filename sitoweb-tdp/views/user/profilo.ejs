@@ -1,0 +1,57 @@
+<%- include('../partials/header') %>
+
+    <main class="container my-5">
+        <!-- Profilo utente -->
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-8">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h1 class="fw-bold mb-0">Profilo di <%= user.username %>
+                    </h1>
+                </div>
+
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-body">
+                        <p><strong>Email:</strong>
+                            <%= user.email %>
+                        </p>
+                        <p><strong>Registrato il:</strong>
+                            <%= new Date(user.createdAt).toLocaleDateString() %>
+                        </p>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Storico IMC -->
+                <div class="card mb-4 shadow-sm">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Storico IMC</h5>
+                    </div>
+                    <div class="card-body">
+                        <% if (imcRecords.length===0) { %>
+                            <p>Non hai ancora registrato alcun valore di IMC.</p>
+                            <% } else { %>
+                                <img src="<%= chartUrl %>" alt="Grafico IMC" class="img-fluid mb-4" />
+                                <ul class="list-unstyled">
+                                    <% imcRecords.forEach(record=> { %>
+                                        <li class="mb-3">
+                                            <strong>
+                                                <%= new Date(record.createdAt).toLocaleDateString() %>
+                                            </strong> –
+                                            IMC: <%= record.imc %> (<%= record.classificazione %>)
+                                        </li>
+                                        <% }) %>
+                                </ul>
+                                <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+
+    <%- include('../partials/footer') %>

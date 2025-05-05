@@ -7,7 +7,7 @@ exports.loginForm = (req, res) => {
   res.render("auth/login");
 };
 
-// Login dell'utente (aggiunto controllo password)
+// Login dell'utente
 exports.login = async (req, res) => {
   try {
     const { username, password } = req.body;
@@ -102,6 +102,7 @@ exports.logout = (req, res) => {
   });
 };
 
+// Connessione con API quickchart per grafico profilo
 exports.showProfile = async (req, res) => {
   try {
     const userId = req.user._id;

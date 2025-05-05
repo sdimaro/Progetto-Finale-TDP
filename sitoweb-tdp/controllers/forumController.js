@@ -70,22 +70,18 @@ exports.show = async (req, res) => {
 // FORM MODIFICA
 exports.editForm = async (req, res) => {
   try {
-    // 1) Prendo il post dal DB
     const topic = await ForumPost.findById(req.params.id);
 
     if (!topic) {
       return res.status(404).send("Argomento non trovato");
     }
 
-    // 2) (Opzionale) solo l'autore può modificare
-    // converti a string per evitare problemi di tipo ObjectId
     const authorId = topic.author.toString();
     const currentUserId = req.user?._id.toString() || req.session.userId;
     if (authorId !== currentUserId) {
       return res.status(403).send("Non autorizzato");
     }
 
-    // 3) Rendo il template **passando topic**
     res.render("forum/edit", { topic });
   } catch (err) {
     console.error("Errore nel recupero dell'argomento per edit:", err);
@@ -104,7 +100,7 @@ exports.update = async (req, res) => {
     const userId = req.user._id; // l'autore deve essere loggato
     const { title, content, category } = req.body;
 
-    // Tentativo atomico: trova e aggiorna SOLO se author===userId
+    // aggiorna SOLO se author===userId
     const updatedPost = await ForumPost.findOneAndUpdate(
       { _id: req.params.id, author: userId },
       { title, content, category, updatedAt: Date.now() },
@@ -113,12 +109,9 @@ exports.update = async (req, res) => {
 
     console.log(">>> update: risultato findOneAndUpdate =", updatedPost);
 
-    // Se non trovi niente, o non esiste, o non sei autore
     if (!updatedPost) {
       return res.status(403).send("Non autorizzato o post non trovato");
     }
-
-    // Tutto ok: redirect al post aggiornato
     res.redirect(`/forum/${updatedPost._id}`);
   } catch (err) {
     console.error("Errore nell'aggiornamento del post:", err);

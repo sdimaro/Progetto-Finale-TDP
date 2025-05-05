@@ -1,5 +1,5 @@
 const Newsletter = require("../models/Newsletter");
-const axios = require("axios"); // Se non l'hai già installato, usa `npm install axios`
+const axios = require("axios");
 
 exports.subscribe = async (req, res) => {
   const { email } = req.body;
@@ -13,7 +13,6 @@ exports.subscribe = async (req, res) => {
       });
     }
 
-    // Salva comunque l'email nel database
     await Newsletter.create({ email });
 
     // Invia l'email solo se l'email termina con 'itis.pr.it'
@@ -21,7 +20,7 @@ exports.subscribe = async (req, res) => {
       const response = await axios.post(
         "https://api.resend.com/emails",
         {
-          from: "onboarding@resend.dev", // Email di mittente
+          from: "onboarding@resend.dev",
           to: email, // Email del destinatario
           subject: "Benvenuto alla Newsletter!",
           html: `
@@ -32,12 +31,11 @@ exports.subscribe = async (req, res) => {
         },
         {
           headers: {
-            Authorization: `Bearer ${process.env.RESEND_API_KEY}`, // La tua API key Resend
+            Authorization: `Bearer ${process.env.RESEND_API_KEY}`, // API key Resend
           },
         }
       );
 
-      // Verifica se l'email è stata inviata correttamente
       if (response.status === 200) {
         res.render("home", {
           success: "Grazie! Iscrizione alla newsletter avvenuta con successo.",

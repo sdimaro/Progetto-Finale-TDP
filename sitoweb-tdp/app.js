@@ -2,7 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const path = require("path");
 const session = require("express-session");
-const User = require("./models/User"); // Importa il modello User
+const User = require("./models/User");
 
 const app = express();
 
@@ -15,10 +15,9 @@ app.use(express.json());
 
 app.use(
   session({
-    secret: "segreto_super_sicuro", // Sostituisci con una stringa più sicura
-    resave: false,
+    secret: "x9&f$3jsl!z@8PLm1#Qw7Jc$Loe21GhBp",
     saveUninitialized: true,
-    cookie: { secure: false }, // Se usi HTTPS, cambia secure a true
+    cookie: { secure: false },
   })
 );
 
@@ -39,7 +38,7 @@ app.use(async (req, res, next) => {
         "username _id"
       );
       if (user) {
-        req.user = user; // ← qui
+        req.user = user;
         res.locals.currentUser = user;
       }
     } catch (err) {
@@ -68,12 +67,12 @@ app.use("/articoli", articoliRoutes);
 const contattiRoutes = require("./routes/contattiRoutes");
 app.use("/contatti", contattiRoutes);
 
-const apiRoutes = require('./routes/apiRoutes');
-app.use('/api', apiRoutes);
+const apiRoutes = require("./routes/apiRoutes");
+app.use("/api", apiRoutes);
 
 // Middleware per la gestione degli errori
 app.use((err, req, res, next) => {
-  console.error(err); // Stampa l'errore in console per il debug
+  console.error(err);
   res.status(500).send("Errore del server");
 });
 
